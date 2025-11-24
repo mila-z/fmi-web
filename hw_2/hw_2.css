@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.image-section {
+    width: 50%;
+    background: #1a659e;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+.image-section img {
+    max-width: 70%;
+    height: auto;
+    object-fit: contain;
+}
+
+.form-section {
+    width: 50%;
+    background: #f7c59f;
+    padding: 40px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin: 20px 0 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"], 
+input[type="date"],
+select,
+.upload-btn {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.upload-btn {
+    text-align: left;
+    justify-content: flex-start;
+    background: #e6e6e6;
+    cursor: pointer;
+}
+
+.gender-group {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.back-btn,
+.next-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.back-btn {
+    background: #efefd0;
+}
+
+.next-btn {
+    background: #004e89;
+    color: white;
+}

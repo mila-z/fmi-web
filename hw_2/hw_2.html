@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puppy Registration</title>
+
+    <link rel="stylesheet" href="hw_2.css">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="image-section">
+        <img src="izabel.png" alt="dog img">
+    </div>
+
+    <div class="form-section">
+        <h2>Register your puppy today!</h2>
+
+        <form>
+            <label>Name</label>
+            <input type="text" placeholder="Pet's name">
+
+            <label>Upload Photo</label>
+            <button type="button" class="upload-btn">Upload Photo</button>
+        
+            <label>Breed</label>
+            <select>
+                <option>Choose a breed</option>
+                <option>Golden Retriever</option>
+                <option>French Bulldog</option>
+                <option>Labrador</option>
+                <option>Pug</option>
+                <option>Beagle</option>
+            </select>
+
+            <label>Birthday</label>
+            <input type="date">
+
+            <label>Gender</label>
+            <div class="gender-group">
+                <label><input type="radio" name="gender"> Female</label>
+                <label><input type="radio" name="gender"> Male</label>
+            </div>
+
+            <label>Weight (lbs)</label>
+            <input type="number" min="0" placeholder="Enter weight">
+
+            <div class="buttons">
+                <button type="button" class="back-btn">Back</button>
+                <button type="submit" class="next-btn">Next</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>
