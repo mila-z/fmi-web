@@ -248,27 +248,53 @@
       </div>
     </section>
 
-    <!-- 4. Работа с WebDriver -->
     <section id="webdriver-usage" class="card">
-      <h2>4. Работа с WebDriver: локатори и действия</h2>
+      <h2>4. Работа с WebDriver</h2>
 
       <p>
         Въпреки че Selenium поддържа широк набор от програмни езици като Java,
         C#, Ruby и други, в настоящия реферат всички примери и демонстрации са
-        реализирани на <strong>Python</strong>.
+        реализирани на <b>Python</b>. Драйвърът, с който ще бъде използван, 
+        е <b>ChromDriver</b>. За демо ще бъдат използвани елементи от следния сайт 
+        <a href="https://www.qa-practice.com/">https://www.qa-practice.com/</a>.
       </p>
 
-      <h3>Сетъпване на среда</h3>
+      <h3>Настройка на среда</h3>
       <p>
         За да започнем работа със Selenium WebDriver, първо трябва да добавим
         официалната библиотека към проекта чрез пакетен мениджър като
         <code>pip</code> за Python, <code>NuGet</code> за C# и т.н.
       </p>
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+# следната команда се изпълнява в терминала
+pip install selenium
+# ако операционната система е macOS да се изпълни:
+# pip3 install selenium
+        </code></pre>
+      </div>
+      
       <p>
         След това е необходимо да се изтегли и конфигурира подходящ браузърен
         драйвър – например ChromeDriver, Edge WebDriver и др. Драйвърът трябва да
         бъде поставен в директория, достъпна за системата, или пътят до него да
-        бъде зададен ръчно в кода.
+        бъде зададен ръчно в кода. Драйвърът трябва да съвпада с текущата версия
+        на браузърът. Това става по следният начин:
+        <ol>
+            <li>
+                Сваля се stable версията, която съответства на Chrome версията, на ChromeDriver 
+                от следния сайт 
+                <a href="https://googlechromelabs.github.io/chrome-for-testing/">
+                https://googlechromelabs.github.io/chrome-for-testing/
+                </a>. 
+            </li>
+            <li>
+                Изтеглената папка трябва да се разархивира и chromedriver.exe (за macOS или Linux - chromedriver) файлът от нея да се постави на 
+                известно място (най-удобно е в папката на проекта). Ако операционната система е macOS или Linux, 
+                файлът трябва да се сложи в /usr/local/bin директорията.
+            </li>
+        </ol>
       </p>
       <p>
         След успешното свързване между Selenium и драйвъра, разработчикът може
@@ -276,26 +302,34 @@
         сценарии.
       </p>
 
-      <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
-        <pre><code class="language-python">
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-
-# Стартиране на Chrome браузър
-driver = webdriver.Chrome()
-
-# Зареждане на уеб адрес
-driver.get("https://www.qa-practice.com/")
-        </code></pre>
-      </div>
-
       <h3>Локатори – откриване на елементи</h3>
       <p>
         Първото нещо, което трябва да се направи, за да се започне тестване, е
         да се стартира инстанция на драйвъра за съответния браузър. Този обект
         ще бъде отговорен за извикването на необходимите функции към драйвъра.
       </p>
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+
+# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+service = Service(executable_path="chromedriver.exe")
+
+# Стартиране на Chrome браузър
+driver = webdriver.Chrome()
+        </code></pre>
+      </div>
+
+      <h3>Основни действия</h3>
+      <p>
+        Оттук насетне в страницата, която сме заредили, можем да автоматизираме широк 
+        набор от потребителски действия. В този раздел ще бъдат показани само няколко 
+        основни примера като кликане, въвеждане на текст, избор от падащи списъци и 
+        скролване. 
+      </p>
+
       <p>
         За да бъдат открити елементите, WebDriver използва локатори като
         <code>ID</code>, <code>class name</code>, <code>name</code>,
@@ -307,34 +341,112 @@ driver.get("https://www.qa-practice.com/")
         <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
 from selenium.webdriver.common.by import By
-
-# Кликване на бутон по ID
-driver.find_element(By.ID, "loginBtn").click()
-
-# Въвеждане на текст по name
-driver.find_element(By.NAME, "username").send_keys("test_user")
         </code></pre>
       </div>
-
-      <h3>Основни действия</h3>
+      
       <p>
-        В заредената страница можем да автоматизираме широк набор от
-        потребителски действия: кликване, въвеждане на текст, избор от падащи
-        списъци, скролване и др.
+        Оттук насетне в страницата, която сме заредили, можем да автоматизираме широк 
+        набор от потребителски действия. В този раздел ще бъдат показани само няколко 
+        основни примера като кликане, въвеждане на текст, избор от падащи списъци и 
+        скролване. 
+      </p>
+
+      <p>
+        За да се кликне бутон, открит по неговия ID, може да се използва метода click(). 
+        За пример се взима бутонът на следната страница 
+        <a href="https://www.qa-practice.com/elements/button/simple">
+            https://www.qa-practice.com/elements/button/simple
+        </a>.
       </p>
 
       <div class="code-block">
         <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
-from selenium.webdriver.support.ui import Select
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 
-# Избор на стойност от падащо меню по видим текст
-select = Select(driver.find_element(By.ID, "country"))
-select.select_by_visible_text("Bulgaria")
+# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+service = Service(executable_path="chromedriver.exe")
 
-# Скролване до елемент
-footer = driver.find_element(By.ID, "footer")
-driver.execute_script("arguments[0].scrollIntoView();", footer)
+# Стартиране на Chrome браузър
+driver = webdriver.Chrome()
+
+driver.find_element(By.ID, “submit-id-submit”).click()
+        </code></pre>
+      </div>
+
+      <p>
+        Въвеждането на текст в поле по име се извършва чрез метода send_keys() (за пример се взима бутонът на следната страница 
+        <a href="https://www.qa-practice.com/elements/input/simple">
+            https://www.qa-practice.com/elements/input/simple
+        </a>).
+      </p>
+
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+
+# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+service = Service(executable_path="chromedriver.exe")
+
+# Стартиране на Chrome браузър
+driver = webdriver.Chrome()
+
+driver.find_element(By.NAME, “text_string”).send_keys(“test_user”)
+        </code></pre>
+      </div>
+
+
+      <p>
+        Изборът на стойност от падащо меню чрез видим текст става чрез класа Select, 
+        който трябва да се добави към проекта (за пример се взима менюто на следната страница 
+        <a href="https://automationtesting.co.uk/dropdown.html">
+            https://automationtesting.co.uk/dropdown.html
+        </a>).
+      </p>
+
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+
+# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+service = Service(executable_path="chromedriver.exe")
+
+# Стартиране на Chrome браузър
+driver = webdriver.Chrome()
+
+driver.find_element(By.NAME, “cars”).send_keys(“Suzuki”)
+        </code></pre>
+      </div>
+
+      <p>
+        Скролване до елемент може да се постигне по следния начин (за пример се взима менюто на следната страница 
+        <a href="https://www.qa-practice.com/elements/input/simple">
+            https://www.qa-practice.com/elements/input/simple
+        </a>):
+      </p>
+
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+
+# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+service = Service(executable_path="chromedriver.exe")
+
+# Стартиране на Chrome браузър
+driver = webdriver.Chrome()
+
+element = driver.find_element(By.TAG_NAME, “footer”), driver.execute_script(“arguments[0].scrollIntoView();”, element)
         </code></pre>
       </div>
 
@@ -476,7 +588,7 @@ alert.accept()  # или alert.dismiss()
         забавяния, движения и скролване.
       </p>
       <p class="note">
-        Важно: тези техники трябва да се използват само в рамките на закона и
+        <b>Важно</b>: тези техники трябва да се използват само в рамките на закона и
         при стриктно спазване на условията за ползване на съответния уебсайт,
         за да се избегне неправомерен достъп или злоупотреба с информация.
       </p>
@@ -581,12 +693,33 @@ alert.accept()  # или alert.dismiss()
     <section id="sources" class="card">
         <h2>Източници</h2>
         <ol>
-            <li id="src1">[https://www.browserstack.com/guide/how-to-perform-website-qa-testing], последно посетен на 2025-12-08.</li>
-            <li id="src2">[https://katalon.com/resources-center/blog/what-is-web-testing], последно посетен на 2025-12-08.</li>
-            <li id="src3">[https://www.browserstack.com/guide/architecture-of-selenium-webdriver], последно посетен на 2025-12-08.</li>
-            <li id="src4">[https://www.browserstack.com/guide/selenium-webdriver-tutorial#:~:text=Selenium%20WebDriver%20is%20the%20core,user%20interactions%20and%20perform%20assertions.], последно посетен на 2025-12-08.</li>
-            <li id="src5">[https://www.qable.io/blog/what-is-the-difference-between-selenium-3-and-selenium-4], последно посетен на 2025-12-08.</li>
-            <li id="src6">[https://vinothqaacademy.com/docs/advantages-and-disadvantages-of-selenium-webdriver/], последно посетен на 2025-12-08.</li>
+            <li id="src1">
+                [<a href="https://www.browserstack.com/guide/how-to-perform-website-qa-testing">
+                https://www.browserstack.com/guide/how-to-perform-website-qa-testing
+                </a>], последно посетен на 2025-12-08.</li>
+            <li id="src2">
+                [<a href="https://katalon.com/resources-center/blog/what-is-web-testing">
+                https://katalon.com/resources-center/blog/what-is-web-testing
+                </a>], последно посетен на 2025-12-08.</li>
+            <li id="src3">
+                [<a href="https://www.browserstack.com/guide/architecture-of-selenium-webdriver">
+                https://www.browserstack.com/guide/architecture-of-selenium-webdriver
+                </a>], последно посетен на 2025-12-08.</li>
+            <li id="src4">
+                [<a href="https://www.browserstack.com/guide/selenium-webdriver-tutorial#:~:text=Selenium%20WebDriver%20is%20the%20core,user%20interactions%20and%20perform%20assertions.">
+                https://www.browserstack.com/guide/selenium-webdriver-tutorial#:~:text=Selenium%20WebDriver%20is%20the%20core,user%20interactions%20and%20perform%20assertions.
+                </a>], последно посетен на 2025-12-08.</li>
+            <li id="src5">
+                [<a href="https://www.qable.io/blog/what-is-the-difference-between-selenium-3-and-selenium-4">
+                https://www.qable.io/blog/what-is-the-difference-between-selenium-3-and-selenium-4
+                </a>
+                ], последно посетен на 2025-12-08.
+            </li>
+            <li id="src6">[
+                <a href="https://vinothqaacademy.com/docs/advantages-and-disadvantages-of-selenium-webdriver/">
+                https://vinothqaacademy.com/docs/advantages-and-disadvantages-of-selenium-webdriver/
+                </a>], последно посетен на 2025-12-08.
+            </li>
         </ol>
     </section>
   </main>
