@@ -1,13 +1,11 @@
 :root {
-  /* обновена палитра */
-  --color-1: #f8edeb; /* фон на текста (sections, card, code) */
-  --color-2: #fae1dd; /* главен фон */
-  --color-3: #e8e8e4; /* sidebar, леки елементи */
-  --color-4: #fec5bb; /* основен акцент */
+  --color-1: #f8edeb; /* text background */
+  --color-2: #fae1dd; /* main background */
+  --color-3: #e8e8e4; /* elements */
+  --color-4: #fec5bb; /* main accent */
   --color-5: #d8e2dc;
 
-  /* производни */
-  --text: #3a3a3a;         /* тъмен текст */
+  --text: #3a3a3a;        
   --text-soft: #555;       
   --border: #ece4db;       
   --shadow: 0 6px 14px rgba(0,0,0,0.15);
@@ -15,7 +13,6 @@
   --radius-xxl: 26px;
 }
 
-/* Reset-ish */
 *,
 *::before,
 *::after {
@@ -30,7 +27,6 @@ body {
   line-height: 1.6;
 }
 
-/* Layout */
 .container {
   width: min(1100px, 100% - 2.5rem);
   margin-inline: auto;
@@ -62,7 +58,6 @@ body {
 }
 
 .site-nav {
-  /* margin-left: auto; */
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
@@ -84,7 +79,6 @@ body {
   background: var(--color-4);
 }
 
-/* Burger for mobile */
 .nav-toggle {
   display: none;
   margin-left: auto;
@@ -101,9 +95,8 @@ body {
   padding-block: 1.5rem 3.5rem;
 }
 
-/* Cards / sections */
 .card {
-  background: var(--color-1); /* чист, едноцветен фон */
+  background: var(--color-1); 
   border-radius: var(--radius-xxl);
   padding: 1.7rem 1.6rem 1.8rem;
   margin-bottom: 1.5rem;
@@ -159,7 +152,6 @@ code {
   border: 1px solid rgba(31, 41, 55, 0.9);
 }
 
-/* Table */
 .driver-table {
   width: 100%;
   border-collapse: collapse;
@@ -183,7 +175,6 @@ code {
   background: var(--color-1);
 }
 
-/* Notes */
 .note {
   font-size: 0.85rem;
   color: var(--text-soft);
@@ -316,6 +307,38 @@ code {
     right: 1rem;
     bottom: 1rem;
   }
+}
+
+.architecture-images {
+margin-top: 1.2rem;
+display: flex;
+justify-content: space-between;
+gap: 14px;
+}
+
+.architecture-images figure {
+flex: 1;
+margin: 0;
+text-align: center;
+}
+
+.architecture-images img {
+width: 100%;
+max-width: 600px;
+height: 300px;
+object-fit: cover; 
+border-radius: 12px;
+border: 1px solid var(--border);
+background: var(--color-3);
+padding: 6px;
+box-shadow: var(--shadow);
+margin: 0 auto;
+}
+
+.architecture-images figcaption {
+margin-top: 0.4rem;
+font-size: 0.9rem;
+color: var(--text-soft);
 }
 
 /* --- NEW LAYOUT WITH SIDEBAR --- */

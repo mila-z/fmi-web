@@ -14,7 +14,6 @@
   </header>
   <div class="layout">
 
-    <!-- SIDEBAR навигация -->
     <aside class="sidebar">
       <nav class="sidebar-nav">
         <a href="#testing">1. Тестване</a>
@@ -27,7 +26,7 @@
     </aside>
 
   <main class="container main-content">
-    <!-- 1. Какво представлява тестването -->
+
     <section id="testing" class="card">
       <h2>1. Какво представлява тестването</h2>
 
@@ -78,11 +77,11 @@
 
       <h4>2. Според това как се тества – ръчно и автоматично</h4>
       <p>
-        <strong>Ръчно тестване</strong> – по определен тестов сценарий,
+        <b>Ръчно тестване</b> – по определен тестов сценарий,
         специалистът изпълнява всички стъпки ръчно и наблюдава резултатите.
       </p>
       <p>
-        <strong>Автоматизирано тестване</strong> – по определен тестов сценарий,
+        <b>Автоматизирано тестване</b> – по определен тестов сценарий,
         специалистът, използвайки тестови фреймуъркове, симулира всички стъпки и
         сравнява резултатите с очакваните.
       </p>
@@ -91,79 +90,78 @@
       <p>
         Някои от предимствата на автоматизацията са по-бързо и по-надеждно
         изпълнение, по-добър избор за по-големи проекти с чести обновления, не
-        изисква ръчен труд при всяка регресия и намалява дългосрочните разходи.
+        изисква ръчен труд при всяка регресия и намалява дългосрочните разходи. <sup><a href="#src2">[2]</a></sup>
       </p>
     </section>
 
-    <!-- 2. Selenium -->
-    <section id="selenium" class="card">
-      <h2>2. Selenium – история, същност, компоненти</h2>
 
-      <h3>Кратка история на Selenium</h3>
+    <section id="selenium" class="card">
+      <h2>2. Selenium </h2>
+
+      <h3>Кратка история на Selenium<sup><a href="#src3">[3]</a></sup></h3>
       <p>
         В началото, за да тестват приложения, разработчиците изпълнявали
         JavaScript команди директно в браузъра. Тази версия е известна като
-        <strong>Selenium Core</strong>.
+        <b>Selenium Core</b>.
       </p>
       <p>
         По-късно бил въведен сървърен компонент, който играе ролята на прокси
         между тестовия скрипт и браузъра. Тази версия е известна като
-        <strong>Selenium Remote Control (Selenium 1)</strong>.
+        <b>Selenium Remote Control (Selenium RC)</b> или <b>Selenium 1</b>.
       </p>
       <p>
         След това била създадена нова кросплатформена библиотека, наречена
-        <strong>WebDriver</strong>, която използва вградени API-та за
+        <b>WebDriver</b>, която използва вградени API-та за
         автоматизация на браузъра вместо инжектиране на JavaScript.
       </p>
       <p>
         Накрая Selenium WebDriver и Selenium RC били комбинирани, създавайки
-        <strong>Selenium 2</strong>. Над него през годините се надгражда и се
-        развива до <strong>Selenium 3</strong>, а по-късно и
-        <strong>Selenium 4</strong>.
+        <b>Selenium 2</b>. Над него през годините се надгражда и се
+        развива до <b>Selenium 3</b>, а по-късно и
+        <b>Selenium 4</b>.
       </p>
 
       <h3>Какво е Selenium</h3>
       <p>
-        <strong>Selenium</strong> е популярен софтуерен фреймуърк с отворен код,
+        <b>Selenium</b> е популярен софтуерен фреймуърк с отворен код,
         използван за автоматизирано тестване на уеб приложения. Той се прилага
         широко при функционално тестване, регресионно тестване и тестване на
         производителността.
       </p>
       <p>
         Selenium поддържа множество програмни езици, включително Java, C#,
-        Python и Ruby, което го прави достъпен за голям кръг разработчици.
+        Python и т.н., което го прави достъпен за голям кръг разработчици.
       </p>
       <p>
         В ролята си на фреймуърк Selenium включва следните компоненти:
       </p>
       <ul>
         <li>
-          <strong>Selenium IDE</strong> – инструмент, който позволява на
+          <b>Selenium IDE</b> – инструмент, който позволява на
           потребителите без писане на код да записват действията си в браузъра и
           автоматично да ги превръщат в тестови сценарии. По същество е
           разширение на браузър.
         </li>
         <li>
-          <strong>Selenium RC</strong> – инструмент, който позволява изпълнение
+          <b>Selenium RC</b> – инструмент, който позволява изпълнение
           на тестове, написани на различни програмни езици, управлявайки
           браузъра чрез JavaScript инжекции.
         </li>
         <li>
-          <strong>Selenium WebDriver</strong> – основният инструмент, с който се
+          <b>Selenium WebDriver</b> – основният инструмент, с който се
           автоматизират тестове за уеб приложения чрез реално управление на
           браузъра. Позволява на тестовите скриптове да взаимодействат с уеб
           елементи по същия начин, по който би го направил истински потребител –
           кликове, писане, навигация и т.н.
         </li>
         <li>
-          <strong>Selenium Grid</strong> – инструмент за паралелно и
+          <b>Selenium Grid</b> – инструмент за паралелно и
           разпределено изпълнение на тестове върху множество машини, браузъри и
           операционни системи.
         </li>
       </ul>
     </section>
 
-    <!-- 3. Архитектура -->
     <section id="architecture" class="card">
       <h2>3. Архитектура на Selenium WebDriver</h2>
       <p>
@@ -193,19 +191,9 @@
       <p>
         Драйвърите на браузърите в Selenium са специфични за всеки отделен
         браузър и взаимодействат с него чрез установяване на защитена връзка.
-        Selenium поддържа различни браузърни драйвъри, сред които:
-      </p>
-      <ul>
-        <li>ChromeDriver – за Google Chrome</li>
-        <li>Microsoft Edge WebDriver – за Edge</li>
-        <li>GeckoDriver – за Mozilla Firefox</li>
-        <li>SafariDriver – за Safari</li>
-        <li>и др.</li>
-      </ul>
-      <p>
-        Те действат като посредници, които разбират инструкциите от Selenium и
-        ги изпълняват в реалния браузър, тъй като вътрешната логика на
-        браузърите е затворена и недостъпна за директна манипулация.
+        Selenium поддържа различни браузърни драйвъри. Те действат като посредници, 
+        които разбират инструкциите от Selenium и ги изпълняват в реалния браузър, 
+        тъй като вътрешната логика на браузърите е затворена и недостъпна за директна манипулация.
       </p>
 
       <h4>Браузъри</h4>
@@ -221,32 +209,43 @@
           <tr>
             <th>Браузър</th>
             <th>Драйвър</th>
-            <th>Бележка</th>
+            <th>Поддържана операционна система</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Google Chrome</td>
+            <td>Google Chrome / Chromium </td>
             <td>ChromeDriver</td>
-            <td>Най-често използван за автоматизация</td>
+            <td>Windows/macOS/Linux</td>
           </tr>
           <tr>
             <td>Mozilla Firefox</td>
             <td>GeckoDriver</td>
-            <td>Поддържа W3C WebDriver стандарта</td>
+            <td>Windows/macOS/Linux</td>
           </tr>
           <tr>
-            <td>Microsoft Edge</td>
+            <td>Microsoft Edge WebDriver</td>
             <td>Edge WebDriver</td>
-            <td>Интегриран с Chromium-базиран Edge</td>
+            <td>Windows/macOS/Linux</td>
           </tr>
           <tr>
             <td>Safari</td>
-            <td>SafariDriver</td>
-            <td>Вграден в macOS</td>
+            <td>SafariDriver (in-built)</td>
+            <td>macOS Sierra и по-нови</td>
           </tr>
         </tbody>
-      </table>
+      </table><sup><a href="#src4">[4]</a></sup>
+
+      <div class="architecture-images">
+        <figure>
+            <img src="img/S3_arch.jpeg" alt="Архитектура Selenium 3">
+            <figcaption>Selenium 3 - архитектура</figcaption>
+        </figure>
+        <figure>
+            <img src="img/S4_arch.jpeg" alt="Архитектура Selenium 4">
+            <figcaption>Selenium 4 - архитектура</figcaption>
+        </figure>
+      </div>
     </section>
 
     <!-- 4. Работа с WebDriver -->
@@ -613,6 +612,15 @@ alert.accept()  # или alert.dismiss()
         <h2>Източници</h2>
         <ol>
             <li id="src1">[https://www.browserstack.com/guide/how-to-perform-website-qa-testing], последно посетен на 2025-12-08.</li>
+        </ol>
+        <ol>
+            <li id="src2">[https://katalon.com/resources-center/blog/what-is-web-testing], последно посетен на 2025-12-08.</li>
+        </ol>
+        <ol>
+            <li id="src3">[https://www.browserstack.com/guide/architecture-of-selenium-webdriver], последно посетен на 2025-12-08.</li>
+        </ol>
+        <ol>
+            <li id="src3">[https://www.browserstack.com/guide/selenium-webdriver-tutorial#:~:text=Selenium%20WebDriver%20is%20the%20core,user%20interactions%20and%20perform%20assertions.], последно посетен на 2025-12-08.</li>
         </ol>
     </section>
   </main>
