@@ -12,18 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Бутон "Към началото"
-  const backToTop = document.getElementById("backToTop");
-  if (backToTop) {
-    window.addEventListener("scroll", () => {
-      backToTop.classList.toggle("visible", window.scrollY > 300);
-    });
-
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-
   // Скриване на кодови блокове
   document.querySelectorAll(".code-block").forEach((block) => {
     const btn = block.querySelector(".code-toggle");
