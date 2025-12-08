@@ -192,6 +192,17 @@ code {
   background: var(--color-1);
   overflow: hidden;
   position: relative;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.code-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.05); /* лек филтър */
+  border-radius: inherit;
+  pointer-events: none;
 }
 
 .code-block pre {
@@ -199,6 +210,8 @@ code {
   padding: 0.85rem 1rem 0.9rem;
   max-height: 480px;
   overflow: auto;
+  position: relative; 
+  z-index: 2;
 }
 
 .code-block pre.collapsed {
