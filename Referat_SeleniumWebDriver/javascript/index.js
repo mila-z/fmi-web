@@ -12,16 +12,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Скриване на кодови блокове
-  document.querySelectorAll(".code-block").forEach((block) => {
-    const btn = block.querySelector(".code-toggle");
-    const pre = block.querySelector("pre");
-    if (!btn || !pre) return;
-
-    btn.addEventListener("click", () => {
-      const collapsed = pre.classList.toggle("collapsed");
-      btn.textContent = collapsed ? "Покажи кода" : "Скрий кода";
-    });
-  });
 });
 
