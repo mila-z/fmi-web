@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <title>Тестване на уеб приложения със Selenium WebDriver. Примери.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1>Тестване на уеб приложения със Selenium WebDriver. Примери.</h1>
+    </div>
+  </header>
+  <div class="layout">
+
+    <!-- SIDEBAR навигация -->
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <a href="#testing">1. Тестване</a>
+        <a href="#selenium">2. Selenium</a>
+        <a href="#architecture">3. Архитектура на Selenium WebDriver</a>
+        <a href="#webdriver-usage">4. Работа с WebDriver</a>
+        <a href="#pros-cons">7. Предимства и недостатъци</a>
+        <a href="#sources">8. Източници</a>
+      </nav>
+    </aside>
+
+  <main class="container main-content">
+    <!-- 1. Какво представлява тестването -->
+    <section id="testing" class="card">
+      <h2>1. Какво представлява тестването</h2>
+
+      <h3>Какво представлява?</h3>
+      <p>
+        Уеб тестването, а и тестването като цяло, представлява “проверка” на 
+        функционалността и качеството на дадено приложение. В процеса на 
+        тестване обикновено се използват предварително дефинирани тестови 
+        сценарии, които специфицират очакваното поведение на дадена функционалност 
+        или качеството на приложението и позволяват систематичната проверка на 
+        тяхната коректност.
+      </p>
+
+      <h3>Защо е необходимо?</h3>
+      <p>
+        Необходимо е, за да верифицира качеството на продукта. Ако нещо не работи в 
+        сайта, хората много бързо могат да загубят интерес, дори приложението да 
+        работи във всички останали аспекти.
+      </p>
+
+      <h4>Статистики<sup><a href="#src1">[1]</a></sup></h4>
+      <ul>
+        <li>1 от 3 потребителя спират да използват сайт при лошо потребителско преживяване.</li>
+        <li>57% от хората няма да препоръчат бизнес с лош дизайн на мобилната версия на сайта.</li>
+        <li>88% от онлайн клиентите казват, че няма да се върнат към сайт, с който са имали лошо първоначално преживяване.</li>
+      </ul>
+
+      <h3>Видове тестване</h3>
+      <p>Има няколко основни категоризации на тестването:</p>
+
+      <h4>1. Според това какво се тества – функционално и нефункционално</h4>
+      <p>
+        <b>Функционалното тестване</b> проверява какво прави
+        приложението – дали функциите работят според изискванията.
+      </p>
+      <p>
+        <b>Нефункционалното тестване</b> проверява как работи
+        приложението – неговите качества. Някои категории нефункционални тестове
+        са:
+      </p>
+      <ul>
+        <li>приемане от потребителя (acceptance)</li>
+        <li>производителност (performance)</li>
+        <li>ползваемост (usability)</li>
+        <li>крос-браузърно тестване (cross-browser)</li>
+        <li>и др.</li>
+      </ul>
+
+      <h4>2. Според това как се тества – ръчно и автоматично</h4>
+      <p>
+        <strong>Ръчно тестване</strong> – по определен тестов сценарий,
+        специалистът изпълнява всички стъпки ръчно и наблюдава резултатите.
+      </p>
+      <p>
+        <strong>Автоматизирано тестване</strong> – по определен тестов сценарий,
+        специалистът, използвайки тестови фреймуъркове, симулира всички стъпки и
+        сравнява резултатите с очакваните.
+      </p>
+
+      <h3>Предимства на автоматизацията</h3>
+      <p>
+        Някои от предимствата на автоматизацията са по-бързо и по-надеждно
+        изпълнение, по-добър избор за по-големи проекти с чести обновления, не
+        изисква ръчен труд при всяка регресия и намалява дългосрочните разходи.
+      </p>
+    </section>
+
+    <!-- 2. Selenium -->
+    <section id="selenium" class="card">
+      <h2>2. Selenium – история, същност, компоненти</h2>
+
+      <h3>Кратка история на Selenium</h3>
+      <p>
+        В началото, за да тестват приложения, разработчиците изпълнявали
+        JavaScript команди директно в браузъра. Тази версия е известна като
+        <strong>Selenium Core</strong>.
+      </p>
+      <p>
+        По-късно бил въведен сървърен компонент, който играе ролята на прокси
+        между тестовия скрипт и браузъра. Тази версия е известна като
+        <strong>Selenium Remote Control (Selenium 1)</strong>.
+      </p>
+      <p>
+        След това била създадена нова кросплатформена библиотека, наречена
+        <strong>WebDriver</strong>, която използва вградени API-та за
+        автоматизация на браузъра вместо инжектиране на JavaScript.
+      </p>
+      <p>
+        Накрая Selenium WebDriver и Selenium RC били комбинирани, създавайки
+        <strong>Selenium 2</strong>. Над него през годините се надгражда и се
+        развива до <strong>Selenium 3</strong>, а по-късно и
+        <strong>Selenium 4</strong>.
+      </p>
+
+      <h3>Какво е Selenium</h3>
+      <p>
+        <strong>Selenium</strong> е популярен софтуерен фреймуърк с отворен код,
+        използван за автоматизирано тестване на уеб приложения. Той се прилага
+        широко при функционално тестване, регресионно тестване и тестване на
+        производителността.
+      </p>
+      <p>
+        Selenium поддържа множество програмни езици, включително Java, C#,
+        Python и Ruby, което го прави достъпен за голям кръг разработчици.
+      </p>
+      <p>
+        В ролята си на фреймуърк Selenium включва следните компоненти:
+      </p>
+      <ul>
+        <li>
+          <strong>Selenium IDE</strong> – инструмент, който позволява на
+          потребителите без писане на код да записват действията си в браузъра и
+          автоматично да ги превръщат в тестови сценарии. По същество е
+          разширение на браузър.
+        </li>
+        <li>
+          <strong>Selenium RC</strong> – инструмент, който позволява изпълнение
+          на тестове, написани на различни програмни езици, управлявайки
+          браузъра чрез JavaScript инжекции.
+        </li>
+        <li>
+          <strong>Selenium WebDriver</strong> – основният инструмент, с който се
+          автоматизират тестове за уеб приложения чрез реално управление на
+          браузъра. Позволява на тестовите скриптове да взаимодействат с уеб
+          елементи по същия начин, по който би го направил истински потребител –
+          кликове, писане, навигация и т.н.
+        </li>
+        <li>
+          <strong>Selenium Grid</strong> – инструмент за паралелно и
+          разпределено изпълнение на тестове върху множество машини, браузъри и
+          операционни системи.
+        </li>
+      </ul>
+    </section>
+
+    <!-- 3. Архитектура -->
+    <section id="architecture" class="card">
+      <h2>3. Архитектура на Selenium WebDriver</h2>
+      <p>
+        Моделът на архитектурата е клиент–сървър, при който тестовият код
+        изпраща команди към браузъра, а браузърът връща резултат.
+      </p>
+
+      <h3>Основни компоненти</h3>
+      <h4>Клиентска библиотека за Selenium</h4>
+      <p>
+        Selenium предоставя поддръжка за множество библиотеки като Ruby, Python,
+        Java и др. под формата на езикови обвързвания (language bindings).
+        Чрез тази библиотека пишем кода за автоматизация.
+      </p>
+
+      <h4>Протокол за комуникация</h4>
+      <p>
+        В <strong>Selenium 3</strong> протоколът е <em>JSON Wire Protocol</em>,
+        предаван чрез HTTP – той управлява данните чрез междинен слой.
+      </p>
+      <p>
+        В <strong>Selenium 4</strong> се използва <em>W3C WebDriver</em>
+        стандарт, който прави комуникацията по-стабилна, по-бърза и по-надеждна.
+      </p>
+
+      <h4>Браузърни драйвъри</h4>
+      <p>
+        Драйвърите на браузърите в Selenium са специфични за всеки отделен
+        браузър и взаимодействат с него чрез установяване на защитена връзка.
+        Selenium поддържа различни браузърни драйвъри, сред които:
+      </p>
+      <ul>
+        <li>ChromeDriver – за Google Chrome</li>
+        <li>Microsoft Edge WebDriver – за Edge</li>
+        <li>GeckoDriver – за Mozilla Firefox</li>
+        <li>SafariDriver – за Safari</li>
+        <li>и др.</li>
+      </ul>
+      <p>
+        Те действат като посредници, които разбират инструкциите от Selenium и
+        ги изпълняват в реалния браузър, тъй като вътрешната логика на
+        браузърите е затворена и недостъпна за директна манипулация.
+      </p>
+
+      <h4>Браузъри</h4>
+      <p>
+        Selenium предоставя поддръжка за множество браузъри. След обработване на
+        заявките драйвърът подава командите към инсталирания браузър чрез
+        вътрешен HTTP сървър, а получените отговори се връщат обратно към
+        клиента.
+      </p>
+
+      <table class="driver-table">
+        <thead>
+          <tr>
+            <th>Браузър</th>
+            <th>Драйвър</th>
+            <th>Бележка</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Chrome</td>
+            <td>ChromeDriver</td>
+            <td>Най-често използван за автоматизация</td>
+          </tr>
+          <tr>
+            <td>Mozilla Firefox</td>
+            <td>GeckoDriver</td>
+            <td>Поддържа W3C WebDriver стандарта</td>
+          </tr>
+          <tr>
+            <td>Microsoft Edge</td>
+            <td>Edge WebDriver</td>
+            <td>Интегриран с Chromium-базиран Edge</td>
+          </tr>
+          <tr>
+            <td>Safari</td>
+            <td>SafariDriver</td>
+            <td>Вграден в macOS</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 4. Работа с WebDriver -->
+    <section id="webdriver-usage" class="card">
+      <h2>4. Работа с WebDriver: локатори и действия</h2>
+
+      <p>
+        Въпреки че Selenium поддържа широк набор от програмни езици като Java,
+        C#, Ruby и други, в настоящия реферат всички примери и демонстрации са
+        реализирани на <strong>Python</strong>.
+      </p>
+
+      <h3>Сетъпване на среда</h3>
+      <p>
+        За да започнем работа със Selenium WebDriver, първо трябва да добавим
+        официалната библиотека към проекта чрез пакетен мениджър като
+        <code>pip</code> за Python, <code>NuGet</code> за C# и т.н.
+      </p>
+      <p>
+        След това е необходимо да се изтегли и конфигурира подходящ браузърен
+        драйвър – например ChromeDriver, Edge WebDriver и др. Драйвърът трябва да
+        бъде поставен в директория, достъпна за системата, или пътят до него да
+        бъде зададен ръчно в кода.
+      </p>
+      <p>
+        След успешното свързване между Selenium и драйвъра, разработчикът може
+        да стартира браузъра програмно и да автоматизира различни тестови
+        сценарии.
+      </p>
+
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+
+# Стартиране на Chrome браузър
+driver = webdriver.Chrome()
+
+# Зареждане на уеб адрес
+driver.get("https://www.qa-practice.com/")
+        </code></pre>
+      </div>
+
+      <h3>Локатори – откриване на елементи</h3>
+      <p>
+        Първото нещо, което трябва да се направи, за да се започне тестване, е
+        да се стартира инстанция на драйвъра за съответния браузър. Този обект
+        ще бъде отговорен за извикването на необходимите функции към драйвъра.
+      </p>
+      <p>
+        За да бъдат открити елементите, WebDriver използва локатори като
+        <code>ID</code>, <code>class name</code>, <code>name</code>,
+        <code>CSS селектори</code> и <code>XPath</code>. За тази цел се използва
+        класът <code>By</code>, който трябва да бъде добавен допълнително:
+      </p>
+
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+from selenium.webdriver.common.by import By
+
+# Кликване на бутон по ID
+driver.find_element(By.ID, "loginBtn").click()
+
+# Въвеждане на текст по name
+driver.find_element(By.NAME, "username").send_keys("test_user")
+        </code></pre>
+      </div>
+
+      <h3>Основни действия</h3>
+      <p>
+        В заредената страница можем да автоматизираме широк набор от
+        потребителски действия: кликване, въвеждане на текст, избор от падащи
+        списъци, скролване и др.
+      </p>
+
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+from selenium.webdriver.support.ui import Select
+
+# Избор на стойност от падащо меню по видим текст
+select = Select(driver.find_element(By.ID, "country"))
+select.select_by_visible_text("Bulgaria")
+
+# Скролване до елемент
+footer = driver.find_element(By.ID, "footer")
+driver.execute_script("arguments[0].scrollIntoView();", footer)
+        </code></pre>
+      </div>
+
+      <h3>Изчаквания – implicit, explicit, fluent wait</h3>
+      <p>
+        При автоматизираното тестване често е необходимо да се изчака
+        определено събитие, за да продължи изпълнението на тестовия сценарий.
+        Това се налага, защото елементите на страницата може да се зареждат
+        динамично или да се появяват след действие.
+      </p>
+
+      <h4>Implicit wait</h4>
+      <p>
+        Задава глобално време за изчакване, през което WebDriver периодично
+        проверява дали елементът е наличен.
+      </p>
+
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+# Глобално изчакване до 10 секунди
+driver.implicitly_wait(10)
+        </code></pre>
+      </div>
+
+      <h4>Explicit wait</h4>
+      <p>
+        Използва се, когато трябва да се изчака конкретно условие, като
+        видимост или кликаемост на даден елемент.
+      </p>
+
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+wait = WebDriverWait(driver, 10)
+login_button = wait.until(
+    EC.visibility_of_element_located((By.ID, "loginBtn"))
+)
+login_button.click()
+        </code></pre>
+      </div>
+
+      <h4>Fluent wait</h4>
+      <p>
+        Разширява възможностите на explicit wait, като позволява максимално
+        време на чакане, интервал между опитите и списък с изключения, които да
+        бъдат игнорирани.
+      </p>
+
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+
+wait = WebDriverWait(
+    driver,
+    timeout=20,
+    poll_frequency=0.5,
+    ignored_exceptions=[NoSuchElementException]
+)
+
+try:
+    element = wait.until(lambda d: d.find_element(By.ID, "dynamicElement"))
+    element.click()
+except TimeoutException:
+    print("Element didn't show in time.")
+        </code></pre>
+      </div>
+
+      <h3>Динамични елементи, pop-ups и alerts</h3>
+      <p>
+        В уеб приложенията често се срещат динамични елементи, изскачащи
+        прозорци (pop-ups) и системни известия (alerts), които изискват
+        специална обработка.
+      </p>
+
+      <h4>Динамични елементи</h4>
+      <p>
+        Обикновено се комбинират с explicit wait, за да се изчака те да
+        станат видими или кликаеми.
+      </p>
+
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+dynamic_btn = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable((By.ID, "dynamicBtn"))
+)
+dynamic_btn.click()
+        </code></pre>
+      </div>
+
+      <h4>HTML pop-ups (нов прозорец/таб)</h4>
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+main_window = driver.current_window_handle
+driver.find_element(By.ID, "openPopup").click()
+
+for handle in driver.window_handles:
+    if handle != main_window:
+        driver.switch_to.window(handle)
+        break
+
+driver.find_element(By.ID, "confirmBtn").click()
+driver.close()
+driver.switch_to.window(main_window)
+        </code></pre>
+      </div>
+
+      <h4>JavaScript alerts</h4>
+      <p>
+        JavaScript <code>alert</code> прозорците трябва да бъдат прихванати и
+        обработени, преди тестът да продължи.
+      </p>
+
+      <div class="code-block">
+        <button class="code-toggle" type="button">Скрий кода</button>
+        <pre><code class="language-python">
+alert = driver.switch_to.alert
+print(alert.text)
+alert.accept()  # или alert.dismiss()
+        </code></pre>
+      </div>
+
+      <h3>Избягване на робот проверки</h3>
+      <p>
+        Когато уеб приложение открие автоматизиран достъп, то често активира
+        защитни механизми като CAPTCHA, ограничаване на честотата на заявките
+        или временно блокиране на IP адреса.
+      </p>
+      <p>
+        Някои подходи включват използване на <code>undetected_chromedriver</code>,
+        динамични User-Agent стойности, ротация на IP чрез проксита или
+        облачни инстанции, както и имитиране на човешко поведение чрез
+        забавяния, движения и скролване.
+      </p>
+      <p class="note">
+        Важно: тези техники трябва да се използват само в рамките на закона и
+        при стриктно спазване на условията за ползване на съответния уебсайт,
+        за да се избегне неправомерен достъп или злоупотреба с информация.
+      </p>
+    </section>
+
+    <section id="pros-cons" class="card">
+      <h2>7. Предимства и недостатъци на Selenium WebDriver</h2>
+
+      <h3>Предимства</h3>
+      <ol>
+        <li>
+          Selenium WebDriver е напълно безплатен и с отворен код, което го прави
+          достъпна алтернатива на комерсиални решения като UFT. Липсата на
+          лицензионни такси позволява използването му от компании с различен
+          мащаб, а голямата и активна общност осигурява бърза помощ при
+          проблеми.
+        </li>
+        <li>
+          Selenium WebDriver е гъвкав инструмент – позволява писане на
+          автоматизирани тестове на различни програмни езици (Java, Python, C#,
+          JavaScript, Ruby, Kotlin и др.).
+        </li>
+        <li>
+          Предлага висока степен на съвместимост между различните браузъри
+          (Chrome, Firefox, Edge, Safari, Opera и др.) чрез специализирани
+          драйвъри като ChromeDriver и GeckoDriver.
+        </li>
+        <li>
+          Има пълна кросплатформена поддръжка – тестовете могат да се изпълняват
+          на Windows, macOS и Linux без промени в сценария и лесно се
+          интегрира с CI/CD инструменти като Jenkins и GitHub Actions.
+        </li>
+        <li>
+          WebDriver комуникира директно с браузъра чрез системни команди, без
+          междинен сървър, което осигурява по-бързо и стабилно изпълнение в
+          сравнение със Selenium RC.
+        </li>
+        <li>
+          Интегрира се с множество тестови фреймуърци като TestNG, JUnit,
+          pytest, NUnit, Mocha и Cucumber, което позволява data-driven,
+          keyword-driven и хибридни стратегии.
+        </li>
+        <li>
+          Чрез Selenium Grid тестовете могат да бъдат изпълнявани паралелно върху
+          различни машини, ОС и браузъри.
+        </li>
+        <li>
+          Вписва се отлично в DevOps практики, работи с CI/CD платформи и
+          поддържа Docker контейнери за повтаряеми тестови среди.
+        </li>
+        <li>
+          Позволява управление на сложни UI взаимодействия, работа с динамични
+          елементи, AJAX съдържание, drag-and-drop, hover, alerts, iframes и
+          др.
+        </li>
+        <li>
+          Може да се комбинира с облачни платформи като BrowserStack, Sauce Labs
+          и LambdaTest за тестване на много комбинации от браузъри и устройства.
+        </li>
+        <li>
+          Поддържа headless режим за Chrome и Firefox, подходящ за CI среди.
+        </li>
+        <li>
+          Лесно се разширява с външни библиотеки като Sikuli, AutoIT и
+          Page Object Model фреймуърци.
+        </li>
+        <li>
+          С излизането на Selenium 4 WebDriver протоколът е стандартизиран
+          според W3C WebDriver спецификациите, което подобрява стабилността и
+          добавя относителни локатори като <code>above()</code>,
+          <code>below()</code>, <code>near()</code>.
+        </li>
+      </ol>
+
+      <h3>Недостатъци</h3>
+      <ol>
+        <li>
+          Selenium WebDriver не предлага собствен механизъм за генериране на
+          тестови отчети – необходимо е използването на външни инструменти като
+          Allure или ExtentReports.
+        </li>
+        <li>
+          Предназначен е основно за уеб браузъри; за мобилни и десктоп
+          приложения се използват допълнителни инструменти като Appium и
+          WinAppDriver.
+        </li>
+        <li>
+          Изисква добри умения по програмиране и познаване на локатори
+          (CSS/XPath), което може да затрудни начинаещите.
+        </li>
+        <li>
+          Динамичните приложения (AJAX, SPA) могат да затруднят WebDriver; нужно
+          е внимателно използване на Explicit и Fluent Wait.
+        </li>
+        <li>
+          За паралелно изпълнение на тестове се ползват отделни инструменти –
+          Selenium Grid, TestNG, pytest-xdist или облачни платформи.
+        </li>
+        <li>
+          Тестовете често се „чупят“ при промени в UI и локаторите; патерни като
+          Page Object Model намаляват този ефект.
+        </li>
+        <li>
+          Не може директно да валидира OTP кодове, имейли или SMS – нужни са
+          външни услуги (MailSlurp, Twilio) или заявки към база данни/API.
+        </li>
+        <li>
+          По-бавен е в сравнение с инструменти като Cypress и Playwright поради
+          архитектурата драйвър–браузър.
+        </li>
+        <li>
+          Не валидира изображения или CAPTCHA – използват се библиотеки като
+          SikuliX или OpenCV.
+        </li>
+        <li>
+          Всеки браузър изисква собствен драйвър, съвместим с конкретната
+          версия; често се използва WebDriverManager.
+        </li>
+        <li>
+          Проектът е community-driven и няма официален търговски support екип.
+        </li>
+        <li>
+          За data-driven тестове се използват външни файлове (JSON, CSV, Excel)
+          и библиотеки като Apache POI или pandas.
+        </li>
+        <li>
+          Не е предназначен за откриване на уязвимости като XSS и SQL injection;
+          за това се използват OWASP ZAP, Burp Suite и други security инструменти.
+        </li>
+      </ol>
+    </section>
+    <section id="sources" class="card">
+        <h2>Източници</h2>
+        <ol>
+            <li id="src1">[https://www.browserstack.com/guide/how-to-perform-website-qa-testing], последно посетен на 2025-12-08.</li>
+        </ol>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
