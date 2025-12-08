@@ -57,44 +57,6 @@ body {
   letter-spacing: 0.02em;
 }
 
-.site-nav {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.site-nav a {
-  color: var(--text-soft);
-  text-decoration: none;
-  font-size: 0.9rem;
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  transition: 0.18s ease;
-}
-
-.site-nav a:hover {
-  color: var(--text);
-  border-color: var(--color-4);
-  background: var(--color-4);
-}
-
-.nav-toggle {
-  display: none;
-  margin-left: auto;
-  border: 1px solid rgba(148, 163, 184, 0.5);
-  background: rgba(15, 23, 42, 0.9);
-  color: var(--text);
-  border-radius: 999px;
-  padding: 0.25rem 0.7rem;
-  font-size: 1.1rem;
-  cursor: pointer;
-}
-
-.main-content {
-  padding-block: 1.5rem 3.5rem;
-}
-
 .card {
   background: var(--color-1); 
   border-radius: var(--radius-xxl);
@@ -163,12 +125,12 @@ code {
 .driver-table td {
   border: 1px solid rgba(31, 41, 55, 0.9);
   padding: 0.45rem 0.6rem;
+  text-align: center;
 }
 
 .driver-table th {
   background: var(--color-3);
   color: var(--text);
-  text-align: left;
 }
 
 .driver-table tr:nth-child(even) td {
@@ -184,7 +146,6 @@ code {
   border: 1px solid var(--border);
 }
 
-/* Code blocks */
 .code-block {
   margin: 0.8rem 0 0.9rem;
   border-radius: var(--radius-xl);
@@ -200,7 +161,7 @@ code {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.05); /* лек филтър */
+  background: rgba(0,0,0,0.05); 
   border-radius: inherit;
   pointer-events: none;
 }
@@ -227,59 +188,6 @@ code {
   border: none;
 }
 
-.code-toggle {
-  position: absolute;
-  right: 0.8rem;
-  top: 0.6rem;
-  z-index: 2;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  font-size: 0.78rem;
-  padding: 0.18rem 0.65rem;
-  background: var(--color-3);
-  color: var(--text-soft);
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-}
-
-.code-toggle:hover {
-  color: var(--text);
-  border-color: var(--color-4);
-}
-
-/* Back to top button */
-#backToTop {
-  position: fixed;
-  right: 1.4rem;
-  bottom: 1.6rem;
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 999px;
-  border: 1px solid var(--color-4);
-  background: var(--color-4);
-  color: var(--text);
-  cursor: pointer;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
-  font-size: 1.1rem;
-}
-
-#backToTop.visible {
-  display: flex;
-}
-
-/* Footer */
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding-block: 0.9rem 1.4rem;
-  background: var(--color-4);
-  font-size: 0.87rem;
-  color: var(--text);
-}
-
-/* Responsive */
 @media (max-width: 800px) {
   .header-inner {
     flex-wrap: wrap;
@@ -290,35 +198,8 @@ code {
     margin-bottom: 0.2rem;
   }
 
-  .nav-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .site-nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-
-  .site-nav.nav-open {
-    display: flex;
-  }
-
-  .site-nav a {
-    padding: 0.4rem 0.4rem;
-    border-radius: 10px;
-  }
-
   .card {
     padding: 1.2rem 1rem 1.3rem;
-  }
-
-  #backToTop {
-    right: 1rem;
-    bottom: 1rem;
   }
 }
 
@@ -354,16 +235,14 @@ font-size: 0.9rem;
 color: var(--text-soft);
 }
 
-/* --- NEW LAYOUT WITH SIDEBAR --- */
 .layout {
   display: flex;
   align-items: flex-start;
 }
 
-/* Sidebar */
 .sidebar {
   position: sticky;
-  top: 85px; /* sticky точка така че визуалното разстояние да е 20px */
+  top: 85px; 
   width: 230px;
   padding: 1rem 0.8rem;
   background: var(--color-1);
@@ -377,6 +256,8 @@ color: var(--text-soft);
   margin-right: 20px;
 
   box-shadow: var(--shadow);
+
+  flex-shrink: 0;
 }
 
 .sidebar-nav {
@@ -401,13 +282,12 @@ color: var(--text-soft);
   border-left: 3px solid var(--color-4);
 }
 
-/* MAIN CONTENT aligned right */
 .main-content {
   flex: 1;
   padding: 1.5rem 2rem;
 }
 
-/* Responsive: sidebar collapses */
+
 @media (max-width: 900px) {
   .layout {
     flex-direction: column;
