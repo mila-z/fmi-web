@@ -266,7 +266,6 @@
         <code>pip</code> за Python, <code>NuGet</code> за C# и т.н.
       </p>
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
 # следната команда се изпълнява в терминала
 pip install selenium
@@ -309,7 +308,6 @@ pip install selenium
         ще бъде отговорен за извикването на необходимите функции към драйвъра.
       </p>
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -332,13 +330,14 @@ driver = webdriver.Chrome()
 
       <p>
         За да бъдат открити елементите, WebDriver използва локатори като
-        <code>ID</code>, <code>class name</code>, <code>name</code>,
-        <code>CSS селектори</code> и <code>XPath</code>. За тази цел се използва
-        класът <code>By</code>, който трябва да бъде добавен допълнително:
+        <code>ID</code>, <code>CLASS_NAME</code>, <code>NAME</code>,
+        <code>CSS_SELECTOR</code>, <code>TAG_NAME</code>, 
+        <code>LINK_TEXT</code>, <code>PARTIAL_LINK_TEXT</code> и 
+        <code>XPath</code>. За тази цел се използва
+        класът By, който трябва да бъде добавен допълнително:
       </p>
 
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
 from selenium.webdriver.common.by import By
         </code></pre>
@@ -360,7 +359,6 @@ from selenium.webdriver.common.by import By
       </p>
 
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -372,7 +370,9 @@ service = Service(executable_path="chromedriver.exe")
 # Стартиране на Chrome браузър
 driver = webdriver.Chrome()
 
-driver.find_element(By.ID, “submit-id-submit”).click()
+driver.get("https://www.qa-practice.com/elements/button/simple")
+
+driver.find_element(By.ID, "submit-id-submit").click()
         </code></pre>
       </div>
 
@@ -384,7 +384,6 @@ driver.find_element(By.ID, “submit-id-submit”).click()
       </p>
 
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -396,7 +395,9 @@ service = Service(executable_path="chromedriver.exe")
 # Стартиране на Chrome браузър
 driver = webdriver.Chrome()
 
-driver.find_element(By.NAME, “text_string”).send_keys(“test_user”)
+driver.get("https://www.qa-practice.com/elements/input/simple")
+
+driver.find_element(By.NAME, "text_string").send_keys("test_user")
         </code></pre>
       </div>
 
@@ -410,7 +411,6 @@ driver.find_element(By.NAME, “text_string”).send_keys(“test_user”)
       </p>
 
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -422,7 +422,9 @@ service = Service(executable_path="chromedriver.exe")
 # Стартиране на Chrome браузър
 driver = webdriver.Chrome()
 
-driver.find_element(By.NAME, “cars”).send_keys(“Suzuki”)
+driver.get("https://automationtesting.co.uk/dropdown.html")
+
+driver.find_element(By.NAME, "cars").send_keys("Suzuki")
         </code></pre>
       </div>
 
@@ -434,7 +436,6 @@ driver.find_element(By.NAME, “cars”).send_keys(“Suzuki”)
       </p>
 
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -446,7 +447,9 @@ service = Service(executable_path="chromedriver.exe")
 # Стартиране на Chrome браузър
 driver = webdriver.Chrome()
 
-element = driver.find_element(By.TAG_NAME, “footer”), driver.execute_script(“arguments[0].scrollIntoView();”, element)
+driver.get("https://www.qa-practice.com/elements/button/simple")
+
+element = driver.find_element(By.TAG_NAME, "footer"), driver.execute_script("arguments[0].scrollIntoView();", element)
         </code></pre>
       </div>
 
@@ -461,12 +464,21 @@ element = driver.find_element(By.TAG_NAME, “footer”), driver.execute_script(
       <h4>Implicit wait</h4>
       <p>
         Задава глобално време за изчакване, през което WebDriver периодично
-        проверява дали елементът е наличен.
+        проверява дали елементът е наличен. Също така е вграден в самия WebDriver 
+        и не изисква импорт на отделен клас
       </p>
 
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+
+# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+service = Service(executable_path="chromedriver.exe")
+
+# Стартиране на Chrome браузър
+driver = webdriver.Chrome()
+
 # Глобално изчакване до 10 секунди
 driver.implicitly_wait(10)
         </code></pre>
@@ -475,20 +487,42 @@ driver.implicitly_wait(10)
       <h4>Explicit wait</h4>
       <p>
         Използва се, когато трябва да се изчака конкретно условие, като
-        видимост или кликаемост на даден елемент.
+        видимост или кликаемост на даден елемент. Това се постига чрез 
+        класа WebDriverWait, който се добавя от библиотеката 
+        selenium.webdriver.support.ui, и предварително дефинирано очаквано 
+        условие, което се дефинира чрез класа expected_conditions от библиотеката 
+        selenium.webdriver.support (за пример се взима Click бутона на следната страница 
+        <a href="https://www.qa-practice.com/elements/button/simple">
+            https://www.qa-practice.com/elements/button/simple
+        </a>. Той е активен, но нека за тестови цели предположим, че е неактивен).
       </p>
 
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+driver = webdriver.Chrome()
+
+# Стартиране на Chrome браузър
+driver.get("https://www.qa-practice.com/elements/button/simple")
+
 wait = WebDriverWait(driver, 10)
-login_button = wait.until(
-    EC.visibility_of_element_located((By.ID, "loginBtn"))
+
+# Изчакваме елементът да стане видим
+practice_btn = wait.until(
+    EC.visibility_of_element_located((By.ID, "submit-id-submit"))
 )
-login_button.click()
+
+# Изчакваме да бъде кликаем
+practice_btn = wait.until(
+    EC.element_to_be_clickable((By.ID, "submit-id-submit"))
+)
+
+practice_btn.click()
         </code></pre>
       </div>
 
@@ -496,26 +530,41 @@ login_button.click()
       <p>
         Разширява възможностите на explicit wait, като позволява максимално
         време на чакане, интервал между опитите и списък с изключения, които да
-        бъдат игнорирани.
+        бъдат игнорирани. Използва се при по-сложни сценарии, където времето за 
+        зареждане е непредвидимо. Реализира се чрез WebDriverWait в комбинация с 
+        poll_frequency за интервал на опитите и собствена функция или 
+        ignored_exceptions за игнориране на грешки (за пример се взима Click бутона на следната страница 
+        <a href="https://www.qa-practice.com/elements/button/simple">
+            https://www.qa-practice.com/elements/button/simple
+        </a>. Той е активен, но нека за тестови цели предположим, че е неактивен).
       </p>
 
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+driver = webdriver.Chrome()
+
+# Стартиране на Chrome браузър
+driver.get("https://www.qa-practice.com/elements/button/simple")
 
 wait = WebDriverWait(
-    driver,
+    driver, 
     timeout=20,
     poll_frequency=0.5,
-    ignored_exceptions=[NoSuchElementException]
+    ignored_exceptions=[NoSuchElementException, ElementNotInteractableException]
 )
 
-try:
-    element = wait.until(lambda d: d.find_element(By.ID, "dynamicElement"))
-    element.click()
-except TimeoutException:
-    print("Element didn't show in time.")
+# Изчакваме да бъде кликаем
+practice_btn = wait.until(
+    EC.element_to_be_clickable((By.ID, "submit-id-submit"))
+)
+
+practice_btn.click()
         </code></pre>
       </div>
 
@@ -529,32 +578,42 @@ except TimeoutException:
       <h4>Динамични елементи</h4>
       <p>
         Обикновено се комбинират с explicit wait, за да се изчака те да
-        станат видими или кликаеми.
+        станат видими или кликаеми (виж примера за explicit wait в предходния 
+        раздел).
       </p>
 
-      <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
-        <pre><code class="language-python">
-dynamic_btn = WebDriverWait(driver, 10).until(
-    EC.element_to_be_clickable((By.ID, "dynamicBtn"))
-)
-dynamic_btn.click()
-        </code></pre>
-      </div>
-
       <h4>HTML pop-ups (нов прозорец/таб)</h4>
+      <p>
+        Изскачащите прозорци (HTML pop-ups) обикновено представляват отделни 
+        прозорци или нови табове. За тях се превключва към съответния прозорец 
+        чрез window handles. (за пример се взима pop-up-a на следната страница 
+        <a href="https://www.qa-practice.com/elements/popup/modal">
+            https://www.qa-practice.com/elements/popup/modal
+        </a>).
+      </p>
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+driver = webdriver.Chrome()
+
+# Стартиране на Chrome браузър
+driver.get("https://www.qa-practice.com/elements/popup/modal")
+
 main_window = driver.current_window_handle
-driver.find_element(By.ID, "openPopup").click()
+
+driver.find_element(By.CLASS_NAME, "btn btn-primary").click()
 
 for handle in driver.window_handles:
     if handle != main_window:
         driver.switch_to.window(handle)
         break
 
-driver.find_element(By.ID, "confirmBtn").click()
+driver.find_element(By.CLASS_NAME, "btn-close").click()
 driver.close()
 driver.switch_to.window(main_window)
         </code></pre>
@@ -563,11 +622,11 @@ driver.switch_to.window(main_window)
       <h4>JavaScript alerts</h4>
       <p>
         JavaScript <code>alert</code> прозорците трябва да бъдат прихванати и
-        обработени, преди тестът да продължи.
+        обработени, преди тестът да продължи. Selenium предоставя вграден интерфейс 
+        за работа с тях.
       </p>
 
       <div class="code-block">
-        <button class="code-toggle" type="button">Скрий кода</button>
         <pre><code class="language-python">
 alert = driver.switch_to.alert
 print(alert.text)
