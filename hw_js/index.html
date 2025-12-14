@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html lang="bg">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Регистрация</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main>
+    <h1>Форма за регистрация</h1>
+
+    <p id="success"></p>
+
+    <form id="registration-form" novalidate>
+        <section>
+            <label>
+                Потребителско име *
+                <input type="text" id="username">
+            </label>
+
+            <label>
+                Име *
+                <input type="text" id="name">
+            </label>
+
+            <label>
+                Фамилия *
+                <input type="text" id="family-name">
+            </label>
+
+            <label>
+                Имейл *
+                <input type="email" id="email">
+            </label>
+
+            <label>
+                Парола *
+                <input type="password" id="password">
+            </label>
+        </section>
+
+        <fieldset>
+            <legend>Адрес (опционално)</legend>
+
+            <label>
+                Улица
+                <input type="text" id="street">
+            </label>
+
+            <label>
+                Град
+                <input type="text" id="city">
+            </label>
+
+            <label>
+                Пощенски код
+                <input type="text" id="postal-code">
+            </label>
+        </fieldset>
+
+        <button id="register-btn" type="submit">Регистрация</button>
+    </form>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
