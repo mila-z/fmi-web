@@ -276,6 +276,13 @@ color: var(--text-soft);
   font-size: 0.92rem;
 }
 
+.sidebar-nav a.active {
+  color: var(--text);
+  background: var(--color-4);
+  border-left: 3px solid var(--color-4);
+  font-weight: 600;
+}
+
 .sidebar-nav a:hover {
   color: var(--text);
   background: var(--color-4);
