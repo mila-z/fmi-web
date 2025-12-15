@@ -6,7 +6,7 @@ const successEl = document.getElementById("success")
 const usernameEl = document.getElementById("username");
 const nameEl = document.getElementById("name");
 const familyNameEl = document.getElementById("family-name");
-const emailEl = document.getElemenetByID("email");
+const emailEl = document.getElementById("email");
 const passwordEl = document.getElementById("password");
 const streetEl = document.getElementById("street");
 const cityEl = document.getElementById("city");
@@ -111,7 +111,9 @@ form.addEventListener("submit", async (e) => {
         
         if (postResponse.ok) {
             successEl.textContent = "Успешна регистрация!";
-            form.reset();
+            setTimeout(() => {
+                form.reset();
+            }, 200);
         }
     } catch(error) {
         console.error(error);
