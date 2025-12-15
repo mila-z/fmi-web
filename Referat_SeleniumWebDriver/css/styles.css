@@ -219,8 +219,8 @@ text-align: center;
 .architecture-images img {
 width: 100%;
 max-width: 600px;
-height: 300px;
-object-fit: cover; 
+height: auto;
+object-fit: contain; 
 border-radius: 12px;
 border: 1px solid var(--border);
 background: var(--color-3);
