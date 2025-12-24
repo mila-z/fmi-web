@@ -353,7 +353,6 @@ color: var(--text-soft);
   }
 }
 
-/* Номериране на таблици */
 .numbered-table {
   counter-increment: table-counter;
 }
@@ -368,4 +367,10 @@ color: var(--text-soft);
   padding-top: 0.4rem;
   font-size: 0.9rem;
   color: var(--text-soft);
+}
+
+.reference-highlight {
+  background: var(--color-4);
+  border-radius: 8px;
+  transition: background 0.4s ease, box-shaodw 0.4s ease;
 }
