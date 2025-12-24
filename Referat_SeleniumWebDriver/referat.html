@@ -258,8 +258,7 @@
         Въпреки че Selenium поддържа широк набор от програмни езици като Java,
         C#, Ruby и други, в настоящия реферат всички примери и демонстрации са
         реализирани на <b>Python</b>. Драйвърът, с който ще бъде използван, 
-        е <b>ChromDriver</b>. За демо ще бъдат използвани елементи от следния сайт 
-        <a href="https://www.qa-practice.com/">https://www.qa-practice.com/</a>.
+        е <b>ChromDriver</b>. 
       </p>
 
       <h3>Настройка на среда</h3>
@@ -275,9 +274,9 @@
         
         <div class="code-block">
           <pre><code class="language-python">
-  # следната команда се изпълнява в терминала
+  # Следната команда се изпълнява в терминала
   pip install selenium
-  # ако операционната система е macOS да се изпълни:
+  # Ако операционната система е macOS, да се изпълни:
   # pip3 install selenium
           </code></pre>
         </div>
@@ -288,7 +287,7 @@
         драйвър – например ChromeDriver, Edge WebDriver и др. Драйвърът трябва да
         бъде поставен в директория, достъпна за системата, или пътят до него да
         бъде зададен ръчно в кода. Драйвърът трябва да съвпада с текущата версия
-        на браузърът. Това става по следният начин:
+        на браузърът. Това става по следният начин<sup><a href="#src6">[6]</a></sup>:
         <ol>
             <li>
                 Сваля се stable версията, която съответства на Chrome версията, на ChromeDriver 
@@ -318,7 +317,7 @@
       </p>
       <figure class="code-figure">
         <figcaption>
-          Инициализация на Chrome WebDriver чрез Selenium
+          Инициализация на Chrome WebDriver чрез Selenium<sup><a href="#src7">[7]</a></sup>
         </figcaption>
         
         <div class="code-block">
@@ -326,7 +325,7 @@
   from selenium import webdriver
   from selenium.webdriver.chrome.service import Service
   
-  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  # Указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
   service = Service(executable_path="chromedriver.exe")
   
   # Стартиране на Chrome браузър
@@ -348,12 +347,12 @@
         <code>ID</code>, <code>CLASS_NAME</code>, <code>NAME</code>,
         <code>CSS_SELECTOR</code>, <code>TAG_NAME</code>, 
         <code>LINK_TEXT</code>, <code>PARTIAL_LINK_TEXT</code> и 
-        <code>XPath</code><sup><a href="#src4">[6]</a></sup>. За тази цел се използва
+        <code>XPath</code><sup><a href="#src8">[8]</a></sup>. За тази цел се използва
         класът By, който трябва да бъде добавен допълнително:
       </p>
 <figure class="code-figure">
         <figcaption>
-          Импортиране на класа By за работа с локатори
+          Импортиране на класа By за работа с локатори<sup><a href="#src7">[7]</a></sup>
         </figcaption>
         
         <div class="code-block">
@@ -366,7 +365,7 @@
       <p>
         Оттук насетне в страницата, която сме заредили, можем да автоматизираме широк 
         набор от потребителски действия. В този раздел ще бъдат показани само няколко 
-        основни примера като кликане, въвеждане на текст, избор от падащи списъци и 
+        основни примера като кфликане, въвеждане на текст, избор от падащи списъци и 
         скролване. 
       </p>
 
@@ -389,21 +388,23 @@
   from selenium.webdriver.chrome.service import Service
   from selenium.webdriver.common.by import By
   
-  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  # Указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
   service = Service(executable_path="chromedriver.exe")
   
   # Стартиране на Chrome браузър
   driver = webdriver.Chrome()
   
+  # Навигация до локацията, на която се намира бутонът
   driver.get("https://www.qa-practice.com/elements/button/simple")
   
+  # Намиране и кликане на бутона
   driver.find_element(By.ID, "submit-id-submit").click()
           </code></pre>
         </div>
       </figure>
 
       <p>
-        Въвеждането на текст в поле по име се извършва чрез метода send_keys() (за пример се взима бутонът на следната страница 
+        Въвеждането на текст в поле по име се извършва чрез метода send_keys() (за пример се взима полето на следната страница 
         <a href="https://www.qa-practice.com/elements/input/simple">
             https://www.qa-practice.com/elements/input/simple
         </a>).
@@ -420,14 +421,16 @@
   from selenium.webdriver.chrome.service import Service
   from selenium.webdriver.common.by import By
   
-  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  # Указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
   service = Service(executable_path="chromedriver.exe")
   
   # Стартиране на Chrome браузър
   driver = webdriver.Chrome()
   
+  # Навигация до локацията, на която се намира полето
   driver.get("https://www.qa-practice.com/elements/input/simple")
   
+  # Намиране на полето и въвеждането на текстът "test_user"
   driver.find_element(By.NAME, "text_string").send_keys("test_user")
           </code></pre>
         </div>
@@ -452,21 +455,23 @@
   from selenium.webdriver.chrome.service import Service
   from selenium.webdriver.common.by import By
   
-  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  # Указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
   service = Service(executable_path="chromedriver.exe")
   
   # Стартиране на Chrome браузър
   driver = webdriver.Chrome()
   
+  # Навигация до локацията, на която се намира падащото меню
   driver.get("https://automationtesting.co.uk/dropdown.html")
   
+  # Избор на елемента
   driver.find_element(By.NAME, "cars").send_keys("Suzuki")
           </code></pre>
         </div>
       </figure>
 
       <p>
-        Скролване до елемент може да се постигне по следния начин (за пример се взима менюто на следната страница 
+        Скролване до елемент може да се постигне по следния начин (за пример се взима полето на следната страница 
         <a href="https://www.qa-practice.com/elements/input/simple">
             https://www.qa-practice.com/elements/input/simple
         </a>):
@@ -474,7 +479,7 @@
 
       <figure class="code-figure">
         <figcaption>
-          Скролване до елемент чрез JavaScript
+          Скролване до елемент 
         </figcaption>
       
         <div class="code-block">
@@ -483,15 +488,19 @@
   from selenium.webdriver.chrome.service import Service
   from selenium.webdriver.common.by import By
   
-  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  # Указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
   service = Service(executable_path="chromedriver.exe")
   
   # Стартиране на Chrome браузър
   driver = webdriver.Chrome()
   
+  # Навигация до локацията, на която се намира полето
   driver.get("https://www.qa-practice.com/elements/button/simple")
   
-  element = driver.find_element(By.TAG_NAME, "footer"), driver.execute_script("arguments[0].scrollIntoView();", element)
+  # Намиране на елемента
+  element = driver.find_element(By.TAG_NAME, "footer") 
+  # Скролване до него
+  driver.execute_script("arguments[0].scrollIntoView();", element)
           </code></pre>
         </div>
       </figure>
@@ -521,7 +530,7 @@
   from selenium import webdriver
   from selenium.webdriver.chrome.service import Service
   
-  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  # Указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
   service = Service(executable_path="chromedriver.exe")
   
   # Стартиране на Chrome браузър
@@ -558,12 +567,13 @@
   from selenium.webdriver.support.ui import WebDriverWait
   from selenium.webdriver.support import expected_conditions as EC
   
-  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  # Указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
   driver = webdriver.Chrome()
   
   # Стартиране на Chrome браузър
   driver.get("https://www.qa-practice.com/elements/button/simple")
   
+  # Създаваме обект wait, който ще чака до 10 секунди
   wait = WebDriverWait(driver, 10)
   
   # Изчакваме елементът да стане видим
@@ -576,6 +586,7 @@
       EC.element_to_be_clickable((By.ID, "submit-id-submit"))
   )
   
+  # Кликаме
   practice_btn.click()
           </code></pre>
         </div>
@@ -606,12 +617,13 @@
   from selenium.webdriver.support.ui import WebDriverWait
   from selenium.webdriver.support import expected_conditions as EC
   
-  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  # Указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
   driver = webdriver.Chrome()
   
   # Стартиране на Chrome браузър
   driver.get("https://www.qa-practice.com/elements/button/simple")
   
+  # Създаваме обект wait, който ще чака макс 20 секунди, ще проверява условието на всеки 0.5 секунди, няма да спре веднага, ако срещне грешка 
   wait = WebDriverWait(
       driver, 
       timeout=20,
@@ -624,6 +636,7 @@
       EC.element_to_be_clickable((By.ID, "submit-id-submit"))
   )
   
+  # Кликаме 
   practice_btn.click()
           </code></pre>
         </div>
@@ -665,23 +678,35 @@
   from selenium.webdriver.support.ui import WebDriverWait
   from selenium.webdriver.support import expected_conditions as EC
   
-  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  # Указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
   driver = webdriver.Chrome()
   
   # Стартиране на Chrome браузър
   driver.get("https://www.qa-practice.com/elements/popup/modal")
   
+  # Запазваме идентификатора за текущия таб/прозорец
   main_window = driver.current_window_handle
   
-  driver.find_element(By.CLASS_NAME, "btn btn-primary").click()
+  # Намираме бутона, който отваря pop-up-а, и кликаме върху него
+  driver.find_element(By.CLASS_NAME, "btn-primary").click()
   
+  # Изчакваме докато броят на отворените прозорчи не стане 2
+  wait = WebDriverWait(driver, 10)
+  wait.until(EC.number_of_windows_to_be(2))
+
+  # Минаваме през всички отворени прозорци/табове 
   for handle in driver.window_handles:
+      # Ако handle-ът е различен от главния, това е новият pop-up
       if handle != main_window:
+          # Превключваме контекстът към него
           driver.switch_to.window(handle)
           break
   
+  # Намираме бутонът, който го затваря, и го кликаме
   driver.find_element(By.CLASS_NAME, "btn-close").click()
+  # Затваряме pop-up-a, ако все още сме в него
   driver.close()
+  # Връщаме се към главният прозорец/таб
   driver.switch_to.window(main_window)
           </code></pre>
         </div>
@@ -691,19 +716,39 @@
       <p>
         JavaScript <code>alert</code> прозорците трябва да бъдат прихванати и
         обработени, преди тестът да продължи. Selenium предоставя вграден интерфейс 
-        за работа с тях.
+        за работа с тях. (за пример се взима обикновен alert на следната страница 
+        <a href="https://www.selenium.dev/selenium/web/alerts.html#">
+            https://www.selenium.dev/selenium/web/alerts.html#
+        </a>).
+      </p>
       </p>
 
       <figure class="code-figure">
         <figcaption>
-          Обработка на JavaScript alert прозорец
+          Обработка на alert прозорец
         </figcaption>
       
         <div class="code-block">
           <pre><code class="language-python">
-  alert = driver.switch_to.alert
-  print(alert.text)
-  alert.accept()  # или alert.dismiss()
+  from selenium import webdriver
+  from selenium.webdriver.common.by import By
+  from selenium.webdriver.support.ui import WebDriverWait
+  from selenium.webdriver.support import expected_conditions as EC
+  
+  # Указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  driver = webdriver.Chrome()
+  
+  # Стартиране на Chrome браузър
+  driver.get("https://www.selenium.dev/selenium/web/alerts.html#")
+
+  # Намираме бутона, който предизвиква alert-a, и го натискаме
+  driver.find_element(By.ID, "alert").click()
+
+  # Изчакваме да се появи
+  alert = wait.until(EC.alert_is_present())
+
+  # Натискаме Ок (ако има опция за отказ -> alert.dismiss())
+  alert.accept()
           </code></pre>
         </div>
       </figure>
@@ -728,7 +773,7 @@
     </section>
 
     <section id="pros-cons" class="card">
-      <h2>5. Предимства и недостатъци на Selenium WebDriver<sup><a href="#src3">[7]</a></sup></h2>
+      <h2>5. Предимства и недостатъци на Selenium WebDriver<sup><a href="#src9">[9]</a></sup></h2>
 
       <h3>Предимства</h3>
       <ol>
@@ -855,12 +900,24 @@
                 ], последно посетен на 2025-12-08.
             </li>
             <li id="src6">
+                BrowserStack team, "Slenium tests using SchromeDriver [2026]", публикуван December 18, 2025 
+                [<a href="https://www.browserstack.com/guide/run-selenium-tests-using-selenium-chromedriver" target="_blank" rel="noopener noreferrer">
+                https://www.browserstack.com/guide/run-selenium-tests-using-selenium-chromedriver
+                </a>], последно посетен на 2025-12-24.
+            </li>
+            <li id="src7">
+                Tec with Tim, "Python Selenium Tutorial - Automate Websites and Create Bots", публикуван November 11, 2023 
+                [<a href="https://www.youtube.com/watch?v=NB8OceGZGjA&pp=ygUcc2VsZW5pdW0gd2ViIGRyaXZlciB0dXRvcmlhbA%3D%3D" target="_blank" rel="noopener noreferrer">
+                https://www.youtube.com/watch?v=NB8OceGZGjA&pp=ygUcc2VsZW5pdW0gd2ViIGRyaXZlciB0dXRvcmlhbA%3D%3D
+                </a>], последно посетен на 2025-12-24.
+            </li>
+            <li id="src8">
                 Selenium Project, "Locator strategies", редактиран July 29, 2025 
                 [<a href="https://www.selenium.dev/documentation/webdriver/elements/locators/" target="_blank" rel="noopener noreferrer">
                 https://www.selenium.dev/documentation/webdriver/elements/locators/
                 </a>], последно посетен на 2025-12-08.
             </li>
-            <li id="src7">
+            <li id="src9">
                 V-Tech Solutions team, "Advantages and disadvantages of selenium webdriver" 
                 [<a href="https://vinothqaacademy.com/docs/advantages-and-disadvantages-of-selenium-webdriver/" target="_blank" rel="noopener noreferrer">
                 https://vinothqaacademy.com/docs/advantages-and-disadvantages-of-selenium-webdriver/
