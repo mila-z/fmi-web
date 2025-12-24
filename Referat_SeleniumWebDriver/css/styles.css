@@ -25,6 +25,7 @@ body {
   background: var(--color-2);
   color: var(--text);
   line-height: 1.6;
+  counter-reset: table-counter listing-counter figure-counter;
 }
 
 .container {
@@ -187,6 +188,21 @@ code {
   border-radius: 0;
   border: none;
 }
+.code-figure {
+  counter-increment: listing-counter;
+  margin: 1rem 0;
+}
+
+.code-figure figcaption::before {
+  content: "Код " counter(listing-counter) ": ";
+  font-weight: 600;
+}
+
+.code-figure figcaption {
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
 
 @media (max-width: 800px) {
   .header-inner {
@@ -233,6 +249,22 @@ margin: 0 auto;
 margin-top: 0.4rem;
 font-size: 0.9rem;
 color: var(--text-soft);
+}
+
+.image-figure {
+  counter-increment: figure-counter;
+}
+
+.image-figure figcaption::before {
+  content: "Фигура " counter(figure-counter) ": ";
+  font-weight: 600;
+}
+
+.image-figure figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  text-align: center;
 }
 
 .layout {
@@ -319,4 +351,21 @@ color: var(--text-soft);
     padding: 0.35rem 0.5rem;
     font-size: 0.85rem;
   }
+}
+
+/* Номериране на таблици */
+.numbered-table {
+  counter-increment: table-counter;
+}
+
+.numbered-table caption::before {
+  content: "Таблица " counter(table-counter) ": ";
+  font-weight: 600;
+}
+
+.numbered-table caption {
+  caption-side: bottom;
+  padding-top: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--text-soft);
 }

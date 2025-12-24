@@ -204,7 +204,10 @@
         клиента.
       </p>
 
-      <table class="driver-table">
+      <table class="driver-table numbered-table">
+        <caption>
+          Поддържани браузъри и съответните им WebDriver драйвъри<sup><a href="#src4">[4]</a></sup>
+        </caption>
         <thead>
           <tr>
             <th>Браузър</th>
@@ -234,14 +237,14 @@
             <td>macOS Sierra и по-нови</td>
           </tr>
         </tbody>
-      </table><sup><a href="#src4">[4]</a></sup>
+      </table>
 
       <div class="architecture-images">
-        <figure>
+        <figure class="image-figure">
             <img src="img/S3_arch.jpeg" alt="Архитектура Selenium 3">
             <figcaption>Selenium 3 - архитектура<sup><a href="#src5">[5]</a></sup></figcaption>
         </figure>
-        <figure>
+        <figure class="image-figure">
             <img src="img/S4_arch.jpeg" alt="Архитектура Selenium 4">
             <figcaption>Selenium 4 - архитектура<sup><a href="#src5">[5]</a></sup></figcaption>
         </figure>
@@ -265,14 +268,20 @@
         официалната библиотека към проекта чрез пакетен мениджър като
         <code>pip</code> за Python, <code>NuGet</code> за C# и т.н.
       </p>
-      <div class="code-block">
-        <pre><code class="language-python">
-# следната команда се изпълнява в терминала
-pip install selenium
-# ако операционната система е macOS да се изпълни:
-# pip3 install selenium
-        </code></pre>
-      </div>
+      <figure class="code-figure">
+        <figcaption>
+          Инсталиране на Selenium чрез pip
+        </figcaption>
+        
+        <div class="code-block">
+          <pre><code class="language-python">
+  # следната команда се изпълнява в терминала
+  pip install selenium
+  # ако операционната система е macOS да се изпълни:
+  # pip3 install selenium
+          </code></pre>
+        </div>
+      </figure>
       
       <p>
         След това е необходимо да се изтегли и конфигурира подходящ браузърен
@@ -307,18 +316,24 @@ pip install selenium
         да се стартира инстанция на драйвъра за съответния браузър. Този обект
         ще бъде отговорен за извикването на необходимите функции към драйвъра.
       </p>
-      <div class="code-block">
-        <pre><code class="language-python">
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-
-# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
-service = Service(executable_path="chromedriver.exe")
-
-# Стартиране на Chrome браузър
-driver = webdriver.Chrome()
-        </code></pre>
-      </div>
+      <figure class="code-figure">
+        <figcaption>
+          Инициализация на Chrome WebDriver чрез Selenium
+        </figcaption>
+        
+        <div class="code-block">
+          <pre><code class="language-python">
+  from selenium import webdriver
+  from selenium.webdriver.chrome.service import Service
+  
+  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  service = Service(executable_path="chromedriver.exe")
+  
+  # Стартиране на Chrome браузър
+  driver = webdriver.Chrome()
+          </code></pre>
+        </div>
+      </figure>
 
       <h3>Основни действия</h3>
       <p>
@@ -336,12 +351,17 @@ driver = webdriver.Chrome()
         <code>XPath</code><sup><a href="#src4">[6]</a></sup>. За тази цел се използва
         класът By, който трябва да бъде добавен допълнително:
       </p>
-
-      <div class="code-block">
-        <pre><code class="language-python">
-from selenium.webdriver.common.by import By
-        </code></pre>
-      </div>
+<figure class="code-figure">
+        <figcaption>
+          Импортиране на класа By за работа с локатори
+        </figcaption>
+        
+        <div class="code-block">
+          <pre><code class="language-python">
+  from selenium.webdriver.common.by import By
+          </code></pre>
+        </div>
+      </figure>
       
       <p>
         Оттук насетне в страницата, която сме заредили, можем да автоматизираме широк 
@@ -358,23 +378,29 @@ from selenium.webdriver.common.by import By
         </a>.
       </p>
 
-      <div class="code-block">
-        <pre><code class="language-python">
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-
-# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
-service = Service(executable_path="chromedriver.exe")
-
-# Стартиране на Chrome браузър
-driver = webdriver.Chrome()
-
-driver.get("https://www.qa-practice.com/elements/button/simple")
-
-driver.find_element(By.ID, "submit-id-submit").click()
-        </code></pre>
-      </div>
+      <figure class="code-figure">
+        <figcaption>
+          Кликване на бутон чрез локатор по ID
+        </figcaption>
+        
+        <div class="code-block">
+          <pre><code class="language-python">
+  from selenium import webdriver
+  from selenium.webdriver.chrome.service import Service
+  from selenium.webdriver.common.by import By
+  
+  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  service = Service(executable_path="chromedriver.exe")
+  
+  # Стартиране на Chrome браузър
+  driver = webdriver.Chrome()
+  
+  driver.get("https://www.qa-practice.com/elements/button/simple")
+  
+  driver.find_element(By.ID, "submit-id-submit").click()
+          </code></pre>
+        </div>
+      </figure>
 
       <p>
         Въвеждането на текст в поле по име се извършва чрез метода send_keys() (за пример се взима бутонът на следната страница 
@@ -383,23 +409,29 @@ driver.find_element(By.ID, "submit-id-submit").click()
         </a>).
       </p>
 
-      <div class="code-block">
-        <pre><code class="language-python">
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-
-# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
-service = Service(executable_path="chromedriver.exe")
-
-# Стартиране на Chrome браузър
-driver = webdriver.Chrome()
-
-driver.get("https://www.qa-practice.com/elements/input/simple")
-
-driver.find_element(By.NAME, "text_string").send_keys("test_user")
-        </code></pre>
-      </div>
+      <figure class="code-figure">
+        <figcaption>
+          Въвеждане на текст в input поле чрез локатор по NAME
+        </figcaption>
+        
+        <div class="code-block">
+          <pre><code class="language-python">
+  from selenium import webdriver
+  from selenium.webdriver.chrome.service import Service
+  from selenium.webdriver.common.by import By
+  
+  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  service = Service(executable_path="chromedriver.exe")
+  
+  # Стартиране на Chrome браузър
+  driver = webdriver.Chrome()
+  
+  driver.get("https://www.qa-practice.com/elements/input/simple")
+  
+  driver.find_element(By.NAME, "text_string").send_keys("test_user")
+          </code></pre>
+        </div>
+      </figure>
 
 
       <p>
@@ -409,24 +441,29 @@ driver.find_element(By.NAME, "text_string").send_keys("test_user")
             https://automationtesting.co.uk/dropdown.html
         </a>).
       </p>
-
-      <div class="code-block">
-        <pre><code class="language-python">
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-
-# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
-service = Service(executable_path="chromedriver.exe")
-
-# Стартиране на Chrome браузър
-driver = webdriver.Chrome()
-
-driver.get("https://automationtesting.co.uk/dropdown.html")
-
-driver.find_element(By.NAME, "cars").send_keys("Suzuki")
-        </code></pre>
-      </div>
+<figure class="code-figure">
+        <figcaption>
+          Избор на стойност от падащо меню
+        </figcaption>
+        
+        <div class="code-block">
+          <pre><code class="language-python">
+  from selenium import webdriver
+  from selenium.webdriver.chrome.service import Service
+  from selenium.webdriver.common.by import By
+  
+  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  service = Service(executable_path="chromedriver.exe")
+  
+  # Стартиране на Chrome браузър
+  driver = webdriver.Chrome()
+  
+  driver.get("https://automationtesting.co.uk/dropdown.html")
+  
+  driver.find_element(By.NAME, "cars").send_keys("Suzuki")
+          </code></pre>
+        </div>
+      </figure>
 
       <p>
         Скролване до елемент може да се постигне по следния начин (за пример се взима менюто на следната страница 
@@ -435,23 +472,29 @@ driver.find_element(By.NAME, "cars").send_keys("Suzuki")
         </a>):
       </p>
 
-      <div class="code-block">
-        <pre><code class="language-python">
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-
-# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
-service = Service(executable_path="chromedriver.exe")
-
-# Стартиране на Chrome браузър
-driver = webdriver.Chrome()
-
-driver.get("https://www.qa-practice.com/elements/button/simple")
-
-element = driver.find_element(By.TAG_NAME, "footer"), driver.execute_script("arguments[0].scrollIntoView();", element)
-        </code></pre>
-      </div>
+      <figure class="code-figure">
+        <figcaption>
+          Скролване до елемент чрез JavaScript
+        </figcaption>
+      
+        <div class="code-block">
+          <pre><code class="language-python">
+  from selenium import webdriver
+  from selenium.webdriver.chrome.service import Service
+  from selenium.webdriver.common.by import By
+  
+  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  service = Service(executable_path="chromedriver.exe")
+  
+  # Стартиране на Chrome браузър
+  driver = webdriver.Chrome()
+  
+  driver.get("https://www.qa-practice.com/elements/button/simple")
+  
+  element = driver.find_element(By.TAG_NAME, "footer"), driver.execute_script("arguments[0].scrollIntoView();", element)
+          </code></pre>
+        </div>
+      </figure>
 
       <h3>Изчаквания – implicit, explicit, fluent wait</h3>
       <p>
@@ -468,21 +511,27 @@ element = driver.find_element(By.TAG_NAME, "footer"), driver.execute_script("arg
         и не изисква импорт на отделен клас
       </p>
 
-      <div class="code-block">
-        <pre><code class="language-python">
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-
-# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
-service = Service(executable_path="chromedriver.exe")
-
-# Стартиране на Chrome браузър
-driver = webdriver.Chrome()
-
-# Глобално изчакване до 10 секунди
-driver.implicitly_wait(10)
-        </code></pre>
-      </div>
+      <figure class="code-figure">
+        <figcaption>
+          Използване на implicit wait за глобално изчакване
+        </figcaption>
+      
+        <div class="code-block">
+          <pre><code class="language-python">
+  from selenium import webdriver
+  from selenium.webdriver.chrome.service import Service
+  
+  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  service = Service(executable_path="chromedriver.exe")
+  
+  # Стартиране на Chrome браузър
+  driver = webdriver.Chrome()
+  
+  # Глобално изчакване до 10 секунди
+  driver.implicitly_wait(10)
+          </code></pre>
+        </div>
+      </figure>
 
       <h4>Explicit wait</h4>
       <p>
@@ -497,34 +546,40 @@ driver.implicitly_wait(10)
         </a>. Той е активен, но нека за тестови цели предположим, че е неактивен).
       </p>
 
-      <div class="code-block">
-        <pre><code class="language-python">
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
-driver = webdriver.Chrome()
-
-# Стартиране на Chrome браузър
-driver.get("https://www.qa-practice.com/elements/button/simple")
-
-wait = WebDriverWait(driver, 10)
-
-# Изчакваме елементът да стане видим
-practice_btn = wait.until(
-    EC.visibility_of_element_located((By.ID, "submit-id-submit"))
-)
-
-# Изчакваме да бъде кликаем
-practice_btn = wait.until(
-    EC.element_to_be_clickable((By.ID, "submit-id-submit"))
-)
-
-practice_btn.click()
-        </code></pre>
-      </div>
+      <figure class="code-figure">
+        <figcaption>
+          Използване на explicit wait с WebDriverWait и expected_conditions
+        </figcaption>
+      
+        <div class="code-block">
+          <pre><code class="language-python">
+  from selenium import webdriver
+  from selenium.webdriver.common.by import By
+  from selenium.webdriver.support.ui import WebDriverWait
+  from selenium.webdriver.support import expected_conditions as EC
+  
+  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  driver = webdriver.Chrome()
+  
+  # Стартиране на Chrome браузър
+  driver.get("https://www.qa-practice.com/elements/button/simple")
+  
+  wait = WebDriverWait(driver, 10)
+  
+  # Изчакваме елементът да стане видим
+  practice_btn = wait.until(
+      EC.visibility_of_element_located((By.ID, "submit-id-submit"))
+  )
+  
+  # Изчакваме да бъде кликаем
+  practice_btn = wait.until(
+      EC.element_to_be_clickable((By.ID, "submit-id-submit"))
+  )
+  
+  practice_btn.click()
+          </code></pre>
+        </div>
+      </figure>
 
       <h4>Fluent wait</h4>
       <p>
@@ -539,34 +594,40 @@ practice_btn.click()
         </a>. Той е активен, но нека за тестови цели предположим, че е неактивен).
       </p>
 
-      <div class="code-block">
-        <pre><code class="language-python">
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
-driver = webdriver.Chrome()
-
-# Стартиране на Chrome браузър
-driver.get("https://www.qa-practice.com/elements/button/simple")
-
-wait = WebDriverWait(
-    driver, 
-    timeout=20,
-    poll_frequency=0.5,
-    ignored_exceptions=[NoSuchElementException, ElementNotInteractableException]
-)
-
-# Изчакваме да бъде кликаем
-practice_btn = wait.until(
-    EC.element_to_be_clickable((By.ID, "submit-id-submit"))
-)
-
-practice_btn.click()
-        </code></pre>
-      </div>
+      <figure class="code-figure">
+        <figcaption>
+          Използване на fluent wait с персонализиран интервал и изключения
+        </figcaption>
+      
+        <div class="code-block">
+          <pre><code class="language-python">
+  from selenium import webdriver
+  from selenium.webdriver.common.by import By
+  from selenium.webdriver.support.ui import WebDriverWait
+  from selenium.webdriver.support import expected_conditions as EC
+  
+  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  driver = webdriver.Chrome()
+  
+  # Стартиране на Chrome браузър
+  driver.get("https://www.qa-practice.com/elements/button/simple")
+  
+  wait = WebDriverWait(
+      driver, 
+      timeout=20,
+      poll_frequency=0.5,
+      ignored_exceptions=[NoSuchElementException, ElementNotInteractableException]
+  )
+  
+  # Изчакваме да бъде кликаем
+  practice_btn = wait.until(
+      EC.element_to_be_clickable((By.ID, "submit-id-submit"))
+  )
+  
+  practice_btn.click()
+          </code></pre>
+        </div>
+      </figure>
 
       <h3>Динамични елементи, pop-ups и alerts</h3>
       <p>
@@ -591,33 +652,40 @@ practice_btn.click()
             https://www.qa-practice.com/elements/popup/modal
         </a>).
       </p>
-      <div class="code-block">
-        <pre><code class="language-python">
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
-# указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
-driver = webdriver.Chrome()
-
-# Стартиране на Chrome браузър
-driver.get("https://www.qa-practice.com/elements/popup/modal")
-
-main_window = driver.current_window_handle
-
-driver.find_element(By.CLASS_NAME, "btn btn-primary").click()
-
-for handle in driver.window_handles:
-    if handle != main_window:
-        driver.switch_to.window(handle)
-        break
-
-driver.find_element(By.CLASS_NAME, "btn-close").click()
-driver.close()
-driver.switch_to.window(main_window)
-        </code></pre>
-      </div>
+      <figure class="code-figure">
+        <figcaption>
+          Работа с HTML pop-up прозорец
+        </figcaption>
+      
+        <div class="code-block">
+          <pre><code class="language-python">
+  from selenium import webdriver
+  from selenium.webdriver.common.by import By
+  from selenium.webdriver.support.ui import WebDriverWait
+  from selenium.webdriver.support import expected_conditions as EC
+  
+  # указване на пътя (ако ОС е macOS или Linux, в скобите пишем /usr/local/bin/chromedriver)
+  driver = webdriver.Chrome()
+  
+  # Стартиране на Chrome браузър
+  driver.get("https://www.qa-practice.com/elements/popup/modal")
+  
+  main_window = driver.current_window_handle
+  
+  driver.find_element(By.CLASS_NAME, "btn btn-primary").click()
+  
+  for handle in driver.window_handles:
+      if handle != main_window:
+          driver.switch_to.window(handle)
+          break
+  
+  driver.find_element(By.CLASS_NAME, "btn-close").click()
+  driver.close()
+  driver.switch_to.window(main_window)
+          </code></pre>
+        </div>
+      </figure>
 
       <h4>JavaScript alerts</h4>
       <p>
@@ -626,13 +694,19 @@ driver.switch_to.window(main_window)
         за работа с тях.
       </p>
 
-      <div class="code-block">
-        <pre><code class="language-python">
-alert = driver.switch_to.alert
-print(alert.text)
-alert.accept()  # или alert.dismiss()
-        </code></pre>
-      </div>
+      <figure class="code-figure">
+        <figcaption>
+          Обработка на JavaScript alert прозорец
+        </figcaption>
+      
+        <div class="code-block">
+          <pre><code class="language-python">
+  alert = driver.switch_to.alert
+  print(alert.text)
+  alert.accept()  # или alert.dismiss()
+          </code></pre>
+        </div>
+      </figure>
 
       <h3>Избягване на робот проверки</h3>
       <p>
