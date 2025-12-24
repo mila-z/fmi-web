@@ -1,9 +1,9 @@
 :root {
   --color-1: #f8edeb; /* text background */
   --color-2: #fae1dd; /* main background */
-  --color-3: #e8e8e4; /* elements */
+  --color-3: #e8e8e4; /* note */
   --color-4: #fec5bb; /* main accent */
-  --color-5: #d8e2dc;
+  --color-5: #d8e2dc; /* elements */
 
   --text: #3a3a3a;        
   --text-soft: #555;       
@@ -130,7 +130,7 @@ code {
 }
 
 .driver-table th {
-  background: var(--color-3);
+  background: var(--color-5);
   color: var(--text);
 }
 
