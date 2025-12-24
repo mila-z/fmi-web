@@ -179,12 +179,21 @@
 
       <h4>Протокол за комуникация</h4>
       <p>
-        В <strong>Selenium 3</strong> протоколът е <em>JSON Wire Protocol</em>,
-        предаван чрез HTTP – той управлява данните чрез междинен слой.
+        В <strong>Selenium 3</strong> комуникацията между тестовия код и бразуъра се
+        осъществява чрез <em>JSON Wire Protocol</em>. При този модел тестовите команди
+        се изпращят от клиента към междинен слой - WebDriver, който ги преобразува от
+        JSON формат в инструкции, специфични за съответния браузър. Макар този подход да 
+        работи коректно, използването на посредник води до допълнителни забавяния и проблеми 
+        със съвместимостта, особено когато производителите на браузъри въвеждат нови функционалности.
+        <sup><a href="#src4">[4]</a></sup>
       </p>
       <p>
-        В <strong>Selenium 4</strong> се използва <em>W3C WebDriver</em>
-        стандарт, който прави комуникацията по-стабилна, по-бърза и по-надеждна.
+        С излизането на <strong>Selenium 4</strong> JSON Wire Protocol е заменен от стандарта
+        <em>W3C WebDriver</em>. При него тестовите команди се изпрашат директно към браузъра в 
+        унифициран и официално дефиниран формат, без необходимост от междинен преовдач. Това води 
+        до по-бърза и по-надеждна комуникация, намаляване на грешките и по-добра съвместимост между 
+        различните браузърни драйвери, като резултатът е по-чиста, устойчива и подготвена за бъдещето 
+        архитектура.<sup><a href="#src4">[4]</a></sup>
       </p>
 
       <h4>Браузърни драйвъри</h4>
@@ -206,7 +215,7 @@
 
       <table class="driver-table numbered-table">
         <caption>
-          Поддържани браузъри и съответните им WebDriver драйвъри<sup><a href="#src4">[4]</a></sup>
+          Поддържани браузъри и съответните им WebDriver драйвъри<sup><a href="#src5">[5]</a></sup>
         </caption>
         <thead>
           <tr>
@@ -242,11 +251,11 @@
       <div class="architecture-images">
         <figure class="image-figure">
             <img src="img/S3_arch.jpeg" alt="Архитектура Selenium 3">
-            <figcaption>Selenium 3 - архитектура<sup><a href="#src5">[5]</a></sup></figcaption>
+            <figcaption>Selenium 3 - архитектура<sup><a href="#src6">[6]</a></sup></figcaption>
         </figure>
         <figure class="image-figure">
             <img src="img/S4_arch.jpeg" alt="Архитектура Selenium 4">
-            <figcaption>Selenium 4 - архитектура<sup><a href="#src5">[5]</a></sup></figcaption>
+            <figcaption>Selenium 4 - архитектура<sup><a href="#src6">[6]</a></sup></figcaption>
         </figure>
       </div>
     </section>
@@ -287,7 +296,7 @@
         драйвър – например ChromeDriver, Edge WebDriver и др. Драйвърът трябва да
         бъде поставен в директория, достъпна за системата, или пътят до него да
         бъде зададен ръчно в кода. Драйвърът трябва да съвпада с текущата версия
-        на браузърът. Това става по следният начин<sup><a href="#src6">[6]</a></sup>:
+        на браузърът. Това става по следният начин<sup><a href="#src7">[7]</a></sup>:
         <ol>
             <li>
                 Сваля се stable версията, която съответства на Chrome версията, на ChromeDriver 
@@ -317,7 +326,7 @@
       </p>
       <figure class="code-figure">
         <figcaption>
-          Инициализация на Chrome WebDriver чрез Selenium<sup><a href="#src7">[7]</a></sup>
+          Инициализация на Chrome WebDriver чрез Selenium<sup><a href="#src8">[8]</a></sup>
         </figcaption>
         
         <div class="code-block">
@@ -347,12 +356,12 @@
         <code>ID</code>, <code>CLASS_NAME</code>, <code>NAME</code>,
         <code>CSS_SELECTOR</code>, <code>TAG_NAME</code>, 
         <code>LINK_TEXT</code>, <code>PARTIAL_LINK_TEXT</code> и 
-        <code>XPath</code><sup><a href="#src8">[8]</a></sup>. За тази цел се използва
+        <code>XPath</code><sup><a href="#src9">[9]</a></sup>. За тази цел се използва
         класът By, който трябва да бъде добавен допълнително:
       </p>
 <figure class="code-figure">
         <figcaption>
-          Импортиране на класа By за работа с локатори<sup><a href="#src7">[7]</a></sup>
+          Импортиране на класа By за работа с локатори<sup><a href="#src8">[8]</a></sup>
         </figcaption>
         
         <div class="code-block">
@@ -773,7 +782,7 @@
     </section>
 
     <section id="pros-cons" class="card">
-      <h2>5. Предимства и недостатъци на Selenium WebDriver<sup><a href="#src9">[9]</a></sup></h2>
+      <h2>5. Предимства и недостатъци на Selenium WebDriver<sup><a href="#src10">[10]</a></sup></h2>
 
       <h3>Предимства</h3>
       <ol>
@@ -887,31 +896,37 @@
                 https://www.browserstack.com/guide/architecture-of-selenium-webdriver
                 </a>], последно посетен на 2025-12-08.</li>
             <li id="src4">
+                BrowserStack team, "Selenium 3 vs Selenium 4: Core Differences", публикувано July 3, 2025 
+                [<a href="https://www.browserstack.com/guide/selenium-3-vs-selenium-4"
+                target="_blank" rel="noopener noreferrer">
+                https://www.browserstack.com/guide/selenium-3-vs-selenium-4
+                </a>], последно посетен на 2025-12-24.</li>
+            <li id="src5">
                 BrowserStack team, "Selenium WebDriver Tutorial", публикувано March 21, 2025 
                 [<a href="https://www.browserstack.com/guide/selenium-webdriver-tutorial#:~:text=Selenium%20WebDriver%20is%20the%20core,user%20interactions%20and%20perform%20assertions."
                 target="_blank" rel="noopener noreferrer">
                 https://www.browserstack.com/guide/selenium-webdriver-tutorial#:~:text=Selenium%20WebDriver%20is%20the%20core,user%20interactions%20and%20perform%20assertions.
                 </a>], последно посетен на 2025-12-08.</li>
-            <li id="src5">
+            <li id="src6">
                 Nishil Patel, "What is The Difference Between Selenium 3 And Selenium 4?", публикувано May 5, 2023 
                 [<a href="https://www.qable.io/blog/what-is-the-difference-between-selenium-3-and-selenium-4" target="_blank" rel="noopener noreferrer">
                 https://www.qable.io/blog/what-is-the-difference-between-selenium-3-and-selenium-4
                 </a>
                 ], последно посетен на 2025-12-08.
             </li>
-            <li id="src6">
-                BrowserStack team, "Slenium tests using SchromeDriver [2026]", публикуван December 18, 2025 
+            <li id="src7">
+                BrowserStack team, "Selenium tests using ChromeDriver [2026]", публикуван December 18, 2025 
                 [<a href="https://www.browserstack.com/guide/run-selenium-tests-using-selenium-chromedriver" target="_blank" rel="noopener noreferrer">
                 https://www.browserstack.com/guide/run-selenium-tests-using-selenium-chromedriver
                 </a>], последно посетен на 2025-12-24.
             </li>
-            <li id="src7">
+            <li id="src8">
                 Tec with Tim, "Python Selenium Tutorial - Automate Websites and Create Bots", публикуван November 11, 2023 
                 [<a href="https://www.youtube.com/watch?v=NB8OceGZGjA&pp=ygUcc2VsZW5pdW0gd2ViIGRyaXZlciB0dXRvcmlhbA%3D%3D" target="_blank" rel="noopener noreferrer">
                 https://www.youtube.com/watch?v=NB8OceGZGjA&pp=ygUcc2VsZW5pdW0gd2ViIGRyaXZlciB0dXRvcmlhbA%3D%3D
                 </a>], последно посетен на 2025-12-24.
             </li>
-            <li id="src8">
+            <li id="src9">
                 Selenium Project, "Locator strategies", редактиран July 29, 2025 
                 [<a href="https://www.selenium.dev/documentation/webdriver/elements/locators/" target="_blank" rel="noopener noreferrer">
                 https://www.selenium.dev/documentation/webdriver/elements/locators/
